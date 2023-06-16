@@ -52,8 +52,8 @@ App({
     }
   },
   globalData: {
-    title: '天网商城',
-    desc: '描述...',
+    title: '菜蕊商城',
+    desc: '菜蕊商城提供新鲜蔬菜、水果、食用农产品、鲜蛋、鲜肉、水产品等批发和零售，和生鲜食材全供应链服务。',
     defaultAvatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
     userInfo: {
       name: '点击登录',
