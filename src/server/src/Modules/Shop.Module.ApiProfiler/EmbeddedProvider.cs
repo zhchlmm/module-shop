@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
@@ -13,10 +14,10 @@ namespace Shop.Module.ApiProfiler
         /// Embedded resource contents keyed by filename.
         /// </summary>
         private ConcurrentDictionary<string, string> _resourceCache { get; } = new ConcurrentDictionary<string, string>();
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IOptions<MiniProfilerOptions> _options;
 
-        public EmbeddedProvider(IOptions<MiniProfilerOptions> options, IHostingEnvironment env)
+        public EmbeddedProvider(IOptions<MiniProfilerOptions> options, IWebHostEnvironment env)
         {
             _options = options;
             _env = env;

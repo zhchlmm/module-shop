@@ -30,7 +30,7 @@ namespace Shop.WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shop Api", Version = "1.0.0" });
             });
 
-            services.AddControllers();
+            //services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

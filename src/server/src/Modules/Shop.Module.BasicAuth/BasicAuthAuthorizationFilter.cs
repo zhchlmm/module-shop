@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Shop.Module.BasicAuth.Dashboard;
 using System;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using Shop.Module.BasicAuth.Dashboard;
 
 namespace Shop.Module.BasicAuth
 {

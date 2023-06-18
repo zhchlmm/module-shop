@@ -21,7 +21,7 @@ namespace Shop.Module.SampleData.Data
         public void RunCommand(string command)
         {
             _logger.LogDebug(command);
-            _dbContext.Database.ExecuteSqlCommand(command);
+            _dbContext.Database.ExecuteSqlRaw(command);
         }
 
         public void RunCommands(IEnumerable<string> commands)
@@ -30,7 +30,7 @@ namespace Shop.Module.SampleData.Data
             {
                 foreach (var command in commands)
                 {
-                    _dbContext.Database.ExecuteSqlCommand(command);
+                    _dbContext.Database.ExecuteSqlRaw(command);
                 }
                 tran.Commit();
             }

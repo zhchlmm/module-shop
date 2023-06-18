@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Shop.Module.BasicAuth": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:2011;http://localhost:2013"
+    }
+  }
+}

@@ -51,11 +51,6 @@ namespace Shop.Module.Core.Data
             return Context.SaveChangesAsync();
         }
 
-        public IQueryable<T> Query()
-        {
-            return DbSet;
-        }
-
         public void Remove(T entity)
         {
             if (entity != null)
@@ -65,6 +60,11 @@ namespace Shop.Module.Core.Data
         public Task<T> FirstOrDefaultAsync(TId id)
         {
             return DbSet.FirstOrDefaultAsync(c => c.Id.Equals(id));
+        }
+
+        public IQueryable<T> Query()
+        {
+            return DbSet;
         }
 
         public IQueryable<T> Query(Expression<Func<T, bool>> predicate)

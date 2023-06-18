@@ -44,8 +44,8 @@ namespace Shop.Module.EmailSenderSmtp
                 send.Body = body;
 
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress(_options.SmtpUserName));
-                message.To.Add(new MailboxAddress(email));
+                message.From.Add(MailboxAddress.Parse(_options.SmtpUserName));
+                message.To.Add(MailboxAddress.Parse(email));
                 message.Subject = subject;
 
                 var textFormat = isHtml ? TextFormat.Html : TextFormat.Plain;

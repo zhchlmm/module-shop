@@ -59,7 +59,7 @@ namespace Shop.WebApi.Extensions
                 moduleInitializer.ConfigureServices(services, configuration);
             }
 
-            services.AddMvc(options =>
+            services.AddControllers(options =>
             {
                 options.Filters.Add<CustomActionFilterAttribute>();
                 options.Filters.Add<CustomExceptionFilterAttribute>();
@@ -75,7 +75,7 @@ namespace Shop.WebApi.Extensions
                 // 设置输入/输出时间格式
                 options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local; // json to datetime 2019-02-26T22:34:13.000Z -> 2019-02-27 06:34:13
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            });
 
             // 验证错误会自动触发HTTP 400响应。禁止ModelState无效时自动返回错误，仅在api项目中配置。
             services.Configure<ApiBehaviorOptions>(options =>
@@ -112,7 +112,12 @@ namespace Shop.WebApi.Extensions
             });
 
             // mediatR
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddMediatR(mediatRConfiguration =>
+            {
+                mediatRConfiguration.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            });
+
         }
 
         public static void AddModules(this IServiceCollection services, IConfiguration configuration)
@@ -144,7 +149,7 @@ namespace Shop.WebApi.Extensions
             //options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Shop.WebApi"));
 
             // MySql
-            options.UseMySql(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Shop.WebApi"));
+            options.UseMySql(configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8, 0, 24)) { }, b => b.MigrationsAssembly("Shop.WebApi"));
         }
 
         public static void AddCustomizedIdentity(this IServiceCollection services, IConfiguration configuration)

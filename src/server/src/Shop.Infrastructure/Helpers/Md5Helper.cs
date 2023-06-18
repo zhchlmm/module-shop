@@ -16,7 +16,7 @@ namespace Shop.Infrastructure.Helpers
         {
             if (encoding == null)
                 encoding = Encoding.UTF8;
-            MD5 md5 = new MD5CryptoServiceProvider();
+            MD5 md5 = MD5.Create();// new MD5CryptoServiceProvider();
             byte[] hashBytes = md5.ComputeHash(encoding.GetBytes(str));
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < hashBytes.Length; i++)
@@ -33,7 +33,7 @@ namespace Shop.Infrastructure.Helpers
         /// <returns></returns>
         public static string Encrypt(byte[] bytes)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
+            MD5 md5 = MD5.Create();// new MD5CryptoServiceProvider();
             byte[] hashBytes = md5.ComputeHash(bytes);
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < hashBytes.Length; i++)
@@ -50,7 +50,7 @@ namespace Shop.Infrastructure.Helpers
         /// <returns></returns>
         public static string Encrypt(Stream stream)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
+            MD5 md5 = MD5.Create();// new MD5CryptoServiceProvider();
             byte[] hashBytes = md5.ComputeHash(stream);
             StringBuilder sb = new StringBuilder(32);
             for (int i = 0; i < hashBytes.Length; i++)

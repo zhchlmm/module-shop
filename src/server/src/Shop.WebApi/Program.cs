@@ -11,7 +11,7 @@ using System;
 
 namespace Shop.WebApi
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -32,7 +32,7 @@ namespace Shop.WebApi
                 .Build();
 
                 var apolloEnabled = configuration.GetSection("ApolloEnabled").Get<bool>();
-                if (apolloEnabled == true)
+                if (apolloEnabled)
                 {
                     config.AddApollo(configuration.GetSection("Apollo")).AddDefault();
                     if (env.IsDevelopment())

@@ -1462,7 +1462,7 @@ namespace Shop.WebApi.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("Core_Role");
 
@@ -1729,11 +1729,11 @@ namespace Shop.WebApi.Migrations
                         .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.HasIndex("PhoneNumber")
                         .IsUnique()

@@ -1,8 +1,9 @@
-﻿using Shop.Module.ApiProfiler.Internal;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Shop.Module.ApiProfiler.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Shop.Module.ApiProfiler
     public class MiniProfilerMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IOptions<MiniProfilerOptions> _options;
 
         internal readonly EmbeddedProvider Embedded;
@@ -31,7 +32,7 @@ namespace Shop.Module.ApiProfiler
         /// <param name="hostingEnvironment">The Hosting Environment.</param>
         /// <param name="options">The middleware options, containing the rules to apply.</param>
         /// <exception cref="ArgumentNullException">Throws when <paramref name="next"/>, <paramref name="hostingEnvironment"/>, or <paramref name="options"/> is <c>null</c>.</exception>
-        public MiniProfilerMiddleware(RequestDelegate next, IHostingEnvironment hostingEnvironment, IOptions<MiniProfilerOptions> options)
+        public MiniProfilerMiddleware(RequestDelegate next, IWebHostEnvironment hostingEnvironment, IOptions<MiniProfilerOptions> options)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
             _env = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
@@ -368,7 +369,7 @@ namespace Shop.Module.ApiProfiler
                 id = (await Options.Storage.ListAsync(1).ConfigureAwait(false)).FirstOrDefault();
             }
 
-            if (id == default(Guid))
+            if (id == Guid.Empty)
             {
                 return NotFound(context, jsonRequest ? null : "No GUID id specified on the query string");
             }

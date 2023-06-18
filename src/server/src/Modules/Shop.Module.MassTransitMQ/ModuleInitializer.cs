@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Shop.Infrastructure.Modules;
 using Shop.Module.MassTransitMQ.Services;
 using Shop.Module.MQ;
+using System;
 
 namespace Shop.Module.MassTransitMQ
 {
@@ -82,7 +83,15 @@ namespace Shop.Module.MassTransitMQ
                 services.TryAddSingleton<IMQService, MemoryMQService>();
             }
 
-            services.AddMassTransitHostedService();
+            //services.AddMassTransitHostedService(); //v8.0+不再需要
+
+            //services.Configure<MassTransitHostOptions>(options =>
+            //{
+            //    options.WaitUntilStarted = true;
+            //    options.StartTimeout = TimeSpan.FromSeconds(30);
+            //    options.StopTimeout = TimeSpan.FromMinutes(1);
+            //});
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
