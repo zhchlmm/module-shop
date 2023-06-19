@@ -1,5 +1,5 @@
-const ApiHost = 'https://localhost:44372/api/';
-// const ApiHost = 'https://api.cairuimall.com/';
+// const ApiHost = 'https://localhost:44372/api/';
+const ApiHost = 'https://api.cairuimall.com/api/';
 
 module.exports = {
   Host: ApiHost,
