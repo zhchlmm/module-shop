@@ -178,13 +178,13 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname);
 
     if (!currRouterData) {
-      return 'Module Shop';
+      return '菜蕊商城';
     }
     const message = formatMessage({
       id: currRouterData.locale || currRouterData.name,
       defaultMessage: currRouterData.name,
     });
-    return `${message} - Module Shop`;
+    return `${message} - 菜蕊商城`;
   };
 
   getLayoutStyle = () => {

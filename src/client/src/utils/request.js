@@ -135,7 +135,7 @@ export default function request(url, option) {
     .then(response => {
       // DELETE and 204 do not return data by default
       // using .json will report an error.
-      // newOptions.method === 'DELETE' || 
+      // newOptions.method === 'DELETE' ||
       if (response.status === 204) {
         return response.text();
       }
@@ -158,10 +158,10 @@ export default function request(url, option) {
       }
       if (status <= 504 && status >= 500) {
         router.push('/exception/500');
-        return;
+        // return;
       }
-      if (status >= 404 && status < 422) {
-        router.push('/exception/404');
-      }
+      // if (status >= 404 && status < 422) {
+      //   router.push('/exception/404');
+      // }
     });
 }

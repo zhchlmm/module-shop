@@ -53,7 +53,7 @@
       </view>
     </view>
   </view>
-  <view class="cu-bar bg-white solid-bottom margin-tb-sm">
+  <!-- <view class="cu-bar bg-white solid-bottom margin-tb-sm">
     <view class="action">
       <text class="icon-titles text-olive"></text>
       <text class="">1个促销</text>
@@ -65,7 +65,7 @@
         <text class="icon-right text-sm text-gray"></text>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <view class="action">
       <text class="icon-titles text-orange"></text>

@@ -35,7 +35,7 @@ const plugins = [
     },
   ],
 ];
-
+process.traceDeprecation = true;
 // judge add ga
 if (process.env.APP_TYPE === 'site') {
   plugins.push([
@@ -69,8 +69,8 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:44372/',
-      // target: 'http://circle.ac.cn:5020/',
+      // target: 'http://localhost:44372/',
+      target: 'https://api.cairuimall.com/',
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
     },

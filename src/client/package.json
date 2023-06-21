@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "presite": "node ./scripts/generateMock.js && cd functions && npm install",
-    "start": "cross-env APP_TYPE=site umi dev",
+    "start": "set NODE_OPTIONS=\"--openssl-legacy-provider\" && cross-env APP_TYPE=site umi dev",
     "start:no-mock": "cross-env MOCK=none umi dev",
-    "build": "umi build",
+    "build": "set NODE_OPTIONS=\"--openssl-legacy-provider\" && umi build",
     "site": "npm run presite && cross-env APP_TYPE=site npm run build && firebase deploy",
     "analyze": "cross-env ANALYZE=1 umi build",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",

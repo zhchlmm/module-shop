@@ -35,12 +35,12 @@
         <text class="text-grey">地址管理</text>
       </navigator>
     </view>
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
       <navigator class="content" url="/pages/ucenter/coupon/coupon" hover-class="none">
         <text class="icon-ticket text-olive"></text>
         <text class="text-grey">优惠券</text>
       </navigator>
-    </view>
+    </view> -->
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/ucenter/collect/collect" hover-class="none">
         <text class="icon-favorfill text-orange"></text>
@@ -53,12 +53,12 @@
         <text class="text-grey">我的浏览</text>
       </navigator>
     </view>
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
       <navigator class="content" url="/pages/ucenter/index/index" hover-class="none">
         <text class="icon-safe text-cyan"></text>
         <text class="text-grey">账号安全</text>
       </navigator>
-    </view>
+    </view> -->
   </view>
   <view class="cu-list menu shadow-lg" style="margin-top:20rpx;">
     <view class="cu-item arrow">

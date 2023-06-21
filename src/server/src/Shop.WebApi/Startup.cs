@@ -52,7 +52,7 @@ namespace Shop.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop Api");
             });
 
-            app.UseCustomizedConfigure(env);
+            app.UseCustomizedConfigure(Configuration, env);
 
             app.UseHttpsRedirection();
 
