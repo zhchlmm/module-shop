@@ -36,72 +36,85 @@ function request(url, data = {}, method = "GET") {
         if (res.statusCode == 200) {
           resolve(res.data);
         } else if (res.statusCode == 401) {
-          // wx.showToast({
-          //   title: '请登录',
-          //   icon: 'none'
-          // })
-          // // 清空本地缓存
-          // try {
-          //   wx.removeStorageSync('userInfo');
-          //   wx.removeStorageSync('token');
-          // } catch (e) {
-          //   // Do something when catch error
-          // }
-          // resolve(res.data);
+
+          // 清空本地缓存
+          try {
+            wx.removeStorageSync('userInfo');
+            wx.removeStorageSync('token');
+          } catch (e) {
+            // Do something when catch error
+          }
+
+          wx.showModal({
+            title: '提示',
+            content: '请先登录！',
+            showCancel: false,
+            complete: (res) => {
+
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/ucenter/index/index'
+                });
+              }
+            }
+          })
+
+          reject(res);
 
           // 如果没有权限，则重新执行自动登录处理
           // 自动登录代码，已测试通过
-          let code = null;
-          login().then((res) => {
-            code = res;
-            return getUserInfo2();
-          }).then((e) => {
-            // console.log(e);
-            // console.log(code);
-            if (e && e.userInfo && code) {
-              // 如果获取到用户信息，则自动重新登录
-              request2(api.LoginByWeixin, {
-                code: code,
-                nickName: e.userInfo.nickName,
-                avatarUrl: e.userInfo.avatarUrl
-              }, 'POST').then(res => {
-                if (res.success === true) {
-                  let userInfo = {
-                    name: res.data.name,
-                    avatar: res.data.avatar
-                  };
+          // let code = null;
+          // login().then((res) => {
+          //   code = res;
+          //   return getUserInfo2();
+          // }).then((e) => {
+          //   // console.log(e);
+          //   // console.log(code);
+          //   if (e && e.userInfo && code) {
+          //     // 如果获取到用户信息，则自动重新登录
+          //     request2(api.LoginByWeixin, {
+          //       code: code,
+          //       nickName: e.userInfo.nickName,
+          //       avatarUrl: e.userInfo.avatarUrl
+          //     }, 'POST').then(res => {
+          //       if (res.success === true) {
+          //         let userInfo = {
+          //           name: res.data.name,
+          //           avatar: res.data.avatar,
+          //           roles: res.data.res
+          //         };
 
-                  app.globalData.userInfo = userInfo;
-                  app.globalData.token = res.data.token;
-                  wx.setStorageSync('userInfo', JSON.stringify(userInfo));
-                  wx.setStorageSync('token', res.data.token);
+          //         app.globalData.userInfo = userInfo;
+          //         app.globalData.token = res.data.token;
+          //         wx.setStorageSync('userInfo', JSON.stringify(userInfo));
+          //         wx.setStorageSync('token', res.data.token);
 
-                  // 自动登录成功
-                  // 重新发起请求
-                  let data2 = request2(url, data, method);
-                  resolve(data2);
-                } else {
-                  wx.showToast({
-                    title: '请登录',
-                    icon: 'none'
-                  })
-                  resolve(res.data);
-                }
-              });
-            } else {
-              wx.showToast({
-                title: '请登录',
-                icon: 'none'
-              })
-              resolve(res.data);
-            }
-          }).catch((err) => {
-            wx.showToast({
-              title: '请登录',
-              icon: 'none'
-            })
-            console.log(err)
-          })
+          //         // 自动登录成功
+          //         // 重新发起请求
+          //         let data2 = request2(url, data, method);
+          //         resolve(data2);
+          //       } else {
+          //         wx.showToast({
+          //           title: '请登录',
+          //           icon: 'none'
+          //         })
+          //         resolve(res.data);
+          //       }
+          //     });
+          //   } else {
+          //     wx.showToast({
+          //       title: '请登录',
+          //       icon: 'none'
+          //     })
+          //     resolve(res.data);
+          //   }
+          // }).catch((err) => {
+          //   wx.showToast({
+          //     title: '请登录',
+          //     icon: 'none'
+          //   })
+          //   console.log(err)
+          //})
         } else if (res.statusCode == 403) {
           wx.showToast({
             title: '您没有操作权限',

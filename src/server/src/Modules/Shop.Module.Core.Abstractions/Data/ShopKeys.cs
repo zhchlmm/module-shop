@@ -11,6 +11,8 @@
 
         public static string Provinces = System + ":country:";
 
+        public static string UserWechatAccessToken = System + ":user:wechat:token";
+
         /// <summary>
         /// 访客用户默认密码
         /// </summary>

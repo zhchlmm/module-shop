@@ -35,7 +35,6 @@ const plugins = [
     },
   ],
 ];
-process.traceDeprecation = true;
 // judge add ga
 if (process.env.APP_TYPE === 'site') {
   plugins.push([
@@ -45,6 +44,8 @@ if (process.env.APP_TYPE === 'site') {
     },
   ]);
 }
+
+process.traceDeprecation = true;
 
 export default {
   // history:'hash', //history: 'hash', // 默认是 browser , 官网推荐 browser https://pro.ant.design/docs/deploy-cn

@@ -126,7 +126,64 @@ Page({
   onSectionItemClick: function (event) {
 
   },
+  getPhoneNumber: function (e) {
+    //code	String	动态令牌。可通过动态令牌换取用户手机号。使用方法详情 phonenumber.getPhoneNumber 接口
+    console.log(e.detail);
 
+    wx.showToast({
+      title: '正在登录...',
+      icon: 'none'
+    });
+
+    const mobileCode = e.detail.code;
+
+    util.login().then((res) => {
+
+      return util.request(api.LoginByWeixin, {
+        code: res
+      }, 'POST');
+    }).then((res) => {
+      wx.hideLoading();
+      // console.log(res)
+      if (res.success !== true) {
+        wx.showToast({
+          title: '微信登录失败',
+        })
+        return false;
+      } else {
+        wx.showToast({
+          title: '登录成功'
+        });
+      }
+      let userInfo = {
+        name: res.data.name,
+        avatar: res.data.avatar,
+        phoneNumber: res.data.phone,
+        roles: res.data.roles
+      };
+      // 设置用户信息
+      this.setData({
+        userInfo: userInfo,
+        showLoginDialog: false
+      });
+
+      app.globalData.userInfo = userInfo;
+      app.globalData.token = res.data.token;
+
+      wx.setStorageSync('userInfo', JSON.stringify(userInfo));
+      wx.setStorageSync('token', res.data.token);
+
+      util.request(api.UpdateWeixinMobile, {
+        code: mobileCode
+      }, 'POST').catch((err) => {
+        console.log(err)
+      });
+
+    }).catch((err) => {
+      console.log(err)
+    })
+
+  },
   // TODO 移到个人信息页面
   exitLogin: function () {
     let that = this;

@@ -90,9 +90,9 @@ Page({
       }
     });
     that.getCollectStatus();
-    that.getReviewsInfo();
+    // that.getReviewsInfo();
     that.getGoodsStocks();
-    that.getReviewsList();
+    // that.getReviewsList();
     that.getGoodsRelated();
   },
   getReviewsInfo: function () {

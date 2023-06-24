@@ -1,4 +1,6 @@
-﻿namespace Shop.Module.Core.ViewModels
+﻿using System.Collections.Generic;
+
+namespace Shop.Module.Core.ViewModels
 {
     public class LoginResult
     {
@@ -8,5 +10,7 @@
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Avatar { get; set; }
+
+        public IList<string> Roles { get; set; } = new List<string>();
     }
 }

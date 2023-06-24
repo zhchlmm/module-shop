@@ -1,5 +1,5 @@
-// const ApiHost = 'https://localhost:44372/api/';
-const ApiHost = 'https://api.cairuimall.com/api/';
+const ApiHost = 'https://localhost:44372/api/';
+// const ApiHost = 'https://api.cairuimall.com/api/';
 
 module.exports = {
   Host: ApiHost,
@@ -35,6 +35,7 @@ module.exports = {
 
   // 登录
   LoginByWeixin: ApiHost + 'mp/login', // 微信登录
+  UpdateWeixinMobile: ApiHost + 'mp/mobile', // 微信手机号更新
 
   // 用户地址
   Addresses: ApiHost + 'user-addresses', // 用户地址

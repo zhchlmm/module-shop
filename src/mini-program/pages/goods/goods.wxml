@@ -29,11 +29,11 @@
         <text class="text text-white">{{product.oldPrice}}</text>
       </view>
     </view>
-    <view class='action'>
+    <!-- <view class='action'>
       <text class="text-sm text-white">好评度</text>
       <view class="icon-like text-white"></view>
       <text class="text-white text padding-left-xs">{{reviewsInfo.positiveRatingPercent}}%</text>
-    </view>
+    </view> -->
   </view>
   <view class="padding-sm bg-white solid-bottom">
     <view class="text-content text">
@@ -65,7 +65,7 @@
         <text class="icon-right text-sm text-gray"></text>
       </view>
     </view>
-  </view> -->
+  </view>
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <view class="action">
       <text class="icon-titles text-orange"></text>
@@ -108,7 +108,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <view class="action">
       <text class="icon-title text-cyan"></text>
@@ -143,7 +143,7 @@
       </view>
     </view>
   </view>
-  <view class="cu-bar bg-white solid-bottom margin-top-sm">
+  <!-- <view class="cu-bar bg-white solid-bottom margin-top-sm">
     <view class="action">
       <text class="icon-title text-brown"></text>
       <text>常见问题</text>
@@ -160,7 +160,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
   <view wx:if="{{relateds.length > 0}}">
     <view class="text-center solid-bottom">
       <view class="padding-lr bg-white margin-top-sm">
