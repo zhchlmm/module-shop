@@ -52,7 +52,13 @@ namespace Shop.Module.StorageLocal
             var size = 0;
             Media media = null;
 
-            var filePath = Path.Combine(GlobalConfiguration.WebRootPath, MediaRootFoler, fileName);
+            var fileDir = Path.Combine(GlobalConfiguration.WebRootPath, MediaRootFoler);
+            if (!Directory.Exists(fileDir))
+            {
+                Directory.CreateDirectory(fileDir);
+            }
+
+            var filePath = Path.Combine(fileDir, fileName);
             using (var output = new FileStream(filePath, FileMode.Create))
             {
                 //if (!File.Exists(filePath))
