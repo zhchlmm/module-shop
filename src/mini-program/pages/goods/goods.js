@@ -83,8 +83,14 @@ Page({
           product: res.data,
           currentSkuImageUrl: res.data.mediaUrl
         });
-        WxParse.wxParse('specification', 'html', res.data.specification, that);
-        WxParse.wxParse('description', 'html', res.data.description, that);
+
+        if (res.data.specification) {
+          WxParse.wxParse('specification', 'html', res.data.specification, that);
+        }
+
+        if (res.data.description) {
+          WxParse.wxParse('description', 'html', res.data.description, that);
+        }
       } else {
         wx.showToast({
           title: res.message,
@@ -423,11 +429,11 @@ Page({
   },
   buy: function (e) {
     console.log(e);
-    
+
     if (!util.checkUserRoles()) {
       wx.showToast({
         image: '/static/images/icon_error.png',
-        title: '您没有权限，请联系我们开通！',
+        title: '请联系我们开通权限！',
         mask: true
       });
       return false;

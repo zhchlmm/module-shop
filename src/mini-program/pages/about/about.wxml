@@ -1,5 +1,5 @@
 <view class='margin-xl bg-white padding-xl radius shadow-lg'>
-  <view class='text-center margin-bottom text-lg text-bold text-red'>关于商城</view>
+  <view class='text-center margin-bottom text-lg text-bold text-red'>关于菜蕊商城</view>
   <view class='text-content'>
     <view>菜蕊商城精准洞察当前生鲜食材配送行业采购耗时长、成本高、产品品质低等痛点问题，创造性的提出缔造“供应链完善化、运营模式创新化、生鲜食材绿色化、综合服务专业化”的生鲜食材集采配送服务平台。</view>
     <view class='margin-top-sm text-bold text-cyan'>完善化 供应链体系</view>

@@ -126,8 +126,14 @@ Page({
     util.request(api.GoodsGrid, params, "POST")
       .then(function (res) {
         if (res.success === true) {
+
+          res.data?.list?.forEach(pro => {
+            pro.price = util.formatPrice(pro.price);
+            pro.oldPrice = util.formatPrice(pro.oldPrice);
+          });
+
           let origin_data = that.data.pageData || [];
-          let new_data = origin_data.concat(res.data.list)
+          let new_data = origin_data.concat(res.data?.list ?? [])
           that.setData({
             pageData: new_data,
             total: parseInt(res.data.pagination.total)

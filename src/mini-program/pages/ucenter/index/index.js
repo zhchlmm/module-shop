@@ -179,14 +179,19 @@ Page({
       wx.setStorageSync('token', res.data.token);
 
       util.request(api.UpdateWeixinMobile, {
-        code: mobileCode
-      }, 'POST').catch((err) => {
-        console.log(err)
-      });
+          code: mobileCode
+        }, 'POST')
+        .then(res => {
+          if (res.success === true) {
+            wx.reLaunch({
+              url: "/pages/index/index",
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        });
 
-      wx.reLaunch({
-        url: "/pages/index/index",
-      });
     }).catch((err) => {
       console.log(err)
     })
@@ -201,6 +206,11 @@ Page({
       content: '退出登录？',
       success: function (res) {
         if (res.confirm) {
+
+          wx.showToast({
+            title: '退出成功！'
+          });
+
           that.setData({
             userInfo: {
               name: '',
@@ -222,6 +232,11 @@ Page({
 
           wx.reLaunch({
             url: "/pages/index/index",
+          });
+        } else {
+
+          wx.showToast({
+            title: '退出失败！'
           });
         }
       }
