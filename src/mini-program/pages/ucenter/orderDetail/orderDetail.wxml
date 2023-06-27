@@ -30,7 +30,7 @@
                                     <text class="text-sm">{{gitem.productName}}</text>
                                 </view>
                                 <view>
-                                    <view class="cu-tag sm bg-white">× {{gitem.quantity}}</view>
+                                    <view class="cu-tag sm bg-white">× {{gitem.quantity}}{{gitem.unitName?"/"+gitem.unitName:""}}</view>
                                     <!-- <view class="cu-tag sm line-black round">
                                     <text class="icon-comment text-black">评价晒单</text>
                                 </view> -->

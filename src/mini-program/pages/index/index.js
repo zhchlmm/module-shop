@@ -83,12 +83,28 @@ Page({
                 } else if (e.widgetId == 3) {
                   let list = that.data.simplProducts;
                   list.push(itemRes.data);
+
+                  list.forEach(p => {
+                    p.products?.forEach(pro => {
+                      pro.price = util.formatPrice(pro.price);
+                      pro.oldPrice = util.formatPrice(pro.oldPrice);
+                    });
+                  });
+
                   that.setData({
                     simplProducts: list
                   });
                 } else if (e.widgetId == 2) {
                   let list = that.data.products;
                   list.push(itemRes.data);
+
+                  list.forEach(p => {
+                    p.products?.forEach(pro => {
+                      pro.price = util.formatPrice(pro.price);
+                      pro.oldPrice = util.formatPrice(pro.oldPrice);
+                    });
+                  });
+
                   that.setData({
                     products: list
                   });

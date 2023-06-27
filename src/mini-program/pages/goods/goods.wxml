@@ -23,10 +23,10 @@
   <view class="cu-bar bg-gradual-pink shadow-blur">
     <view class='action'>
       <text class="text-sm text-white text-bold">￥</text>
-      <text class="text-xxl text-white text-bold">{{product.price}}</text>
+      <text class="text-xxl text-white text-bold">{{product.price}}{{product.unitName?"/"+product.unitName:""}}</text>
       <view wx:if="{{product.oldPrice&&product.oldPrice>0}}" class="padding-left-xs text-white" style="text-decoration:line-through;">
         <text class="text-sm text-white">￥</text>
-        <text class="text text-white">{{product.oldPrice}}</text>
+        <text class="text text-white">{{product.oldPrice}}{{product.unitName?"/"+product.unitName:""}}</text>
       </view>
     </view>
     <!-- <view class='action'>
@@ -181,8 +181,8 @@
               <view class="text-cut text text text-left">{{item.name}}</view>
               <view class="text-cut text-gray text-sm text-left">{{item.shortDescription}}</view>
               <view class="flex">
-                <view class="text-red text-bold">￥{{item.price}}</view>
-                <view wx:if="{{item.oldPrice&&item.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item.oldPrice}}</view>
+                <view class="text-red text-bold">￥{{item.price}}{{item.unitName?"/"+item.unitName:""}}</view>
+                <view wx:if="{{item.oldPrice&&item.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item.oldPrice}}{{item.unitName?"/"+item.unitName:""}}</view>
               </view>
             </view>
           </view>

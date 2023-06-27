@@ -18,6 +18,31 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function checkUserRoles() {
+  var roles = app.globalData.userInfo?.roles ?? [];
+  if (roles.indexOf('customer') === -1 && roles.indexOf('admin') === -1) {
+    return false;
+  }
+
+  return true;
+}
+
+function formatPrice(price) {
+  if (price !== 0 && !price) {
+    return "?";
+  }
+
+  if (!checkSession())
+    return "?";
+
+  var roles = app.globalData.userInfo?.roles ?? [];
+  if (!checkUserRoles()) {
+    return "?";
+  }
+
+  return price;
+}
+
 /**
  * 封封微信的的request
  */
@@ -301,5 +326,7 @@ module.exports = {
   showErrorToast,
   checkSession,
   login,
-  getUserInfo
+  getUserInfo,
+  formatPrice,
+  checkUserRoles
 }

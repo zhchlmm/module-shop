@@ -76,6 +76,9 @@ Page({
     util.request(api.Goods + '/' + that.data.id).then(function (res) {
       wx.hideLoading();
       if (res.success === true) {
+
+        res.data.price = util.formatPrice(res.data.price);
+        res.data.oldPrice = util.formatPrice(res.data.oldPrice);
         that.setData({
           product: res.data,
           currentSkuImageUrl: res.data.mediaUrl
@@ -125,6 +128,11 @@ Page({
     let that = this;
     util.request(api.GoodsRelated2 + '/' + that.data.id).then(function (res) {
       if (res.success === true) {
+
+        res.data?.forEach(pro => {
+          pro.price = util.formatPrice(pro.price);
+          pro.oldPrice = util.formatPrice(pro.oldPrice);
+        });
         that.setData({
           relateds: res.data,
         });
@@ -415,6 +423,15 @@ Page({
   },
   buy: function (e) {
     console.log(e);
+    
+    if (!util.checkUserRoles()) {
+      wx.showToast({
+        image: '/static/images/icon_error.png',
+        title: '您没有权限，请联系我们开通！',
+        mask: true
+      });
+      return false;
+    }
 
     this.isCheckedAllSpec();
 

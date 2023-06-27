@@ -33,8 +33,11 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     let that = this;
-    let param = {};
-    if (options.parentId) {
+    let param = {
+      parentId: options.id
+    };
+
+    if (options.parentId && options.parentId != "null") {
       param = {
         parentId: options.parentId
       };
@@ -128,6 +131,11 @@ Page({
         size: that.data.size
       })
       .then(function (res) {
+
+        res.data?.goodsList?.forEach(pro => {
+          pro.price = util.formatPrice(pro.price);
+          pro.oldPrice = util.formatPrice(pro.oldPrice);
+        });
         that.setData({
           goodsList: res.data.goodsList,
         });
@@ -210,6 +218,12 @@ Page({
       .then(function (res) {
         if (res.success === true) {
           let origin_data = that.data.pageData || [];
+
+          res.data?.list?.forEach(pro => {
+            pro.price = util.formatPrice(pro.price);
+            pro.oldPrice = util.formatPrice(pro.oldPrice);
+          });
+
           let new_data = origin_data.concat(res.data.list)
           that.setData({
             pageData: new_data,

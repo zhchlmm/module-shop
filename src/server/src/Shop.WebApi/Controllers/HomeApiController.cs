@@ -156,6 +156,7 @@ namespace Shop.WebApi.Controllers
                         }
                         result.Products = query
                              .Include(x => x.ThumbnailImage)
+                             .Include(x => x.Unit)
                              //.OrderByDescending(x => x.CreatedOn)
                              .Take(result.Setting.ItemCount)
                              .Select(x => new GoodsListResult
@@ -174,7 +175,8 @@ namespace Shop.WebApi.Controllers
                                  RatingAverage = x.RatingAverage,
                                  ShortDescription = x.ShortDescription,
                                  IsPublished = x.IsPublished,
-                                 IsFeatured = x.IsFeatured
+                                 IsFeatured = x.IsFeatured,
+                                 UnitName = x.Unit.Name
                              })
                              .ToList();
                         return Result.Ok(result);
@@ -195,6 +197,7 @@ namespace Shop.WebApi.Controllers
                             var products = await _productRepository
                                 .Query()
                                 .Include(c => c.ThumbnailImage)
+                                .Include(c => c.Unit)
                                 .Where(x => x.IsPublished && productIds.Contains(x.Id)).ToListAsync();
                             foreach (var item in products)
                             {

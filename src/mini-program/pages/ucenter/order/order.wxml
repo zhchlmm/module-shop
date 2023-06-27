@@ -29,7 +29,7 @@
                                         <text class="text-sm">{{gitem.productName}}</text>
                                     </view>
                                     <view>
-                                        <view class="cu-tag sm bg-white">× {{gitem.quantity}}</view>
+                                        <view class="cu-tag sm bg-white">× {{gitem.quantity}}{{gitem.unitName?"/"+gitem.unitName:""}}</view>
                                         <view class="cu-tag bg-red light sm round">七天退换</view>
                                     </view>
                                 </view>

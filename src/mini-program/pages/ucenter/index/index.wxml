@@ -61,11 +61,11 @@
     </view> -->
   </view>
   <view class="cu-list menu shadow-lg" style="margin-top:20rpx;">
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/chat/chat" hover-class="none">
+    <view class="cu-item arrow" bindtap="bindCallMe">
+      <button class="cu-btn content">
         <text class="icon-dianhua text-red"></text>
         <text class="text-grey">联系客服</text>
-      </navigator>
+      </button>
     </view>
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/help/help" hover-class="none">
@@ -104,22 +104,16 @@
       <view class="padding-top-sm">
         <text class="text-bold text-black">{{shopName}}</text>
       </view>
-    </view>
-
-    <button style="width:100%;height:100rpx;border-radius:0;" class="cu-btn bg-blue" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN">手机号登录</button>
-    <!-- <button style="width:100%;height:100rpx;border-radius:0;" class="cu-btn bg-blue" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权登录</button> -->
-
-    <!-- <view class="cu-list">
-      <view class="cu-bar solid-bottom">
-        <view class="action">
-          <text class="icon-titles text-blue"></text>
-          <text>请选择登录方式</text>
+      <view class="padding-xl">
+        <view class="text-center">
+          <!-- <text class="icon-titles text-blue"></text> -->
+          <text class="text-sm">授权使用微信绑定手机号码登录</text>
         </view>
       </view>
-      <view class="padding flex flex-direction">
-        <button class="cu-btn bg-green lg" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权登录</button>
-        <button class="cu-btn bg-blue margin-top lg" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN" >手机号登录</button>  
+      <view class="flex flex-direction">
+        <!-- <button class="cu-btn bg-green lg" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权登录</button> -->
+        <button style="width:100%;height:100rpx;border-radius:0;" class="cu-btn bg-blue" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN">授权微信登录</button>
       </view>
-    </view> -->
+    </view>
   </view>
 </view>

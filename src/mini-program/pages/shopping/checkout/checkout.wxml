@@ -38,7 +38,7 @@
                     </text>
                     <!-- <text>{{' ' + item.variationString}}</text> -->
                 </view>
-                <view class="b">￥{{item.productPrice}}</view>
+                <view class="b">￥{{item.productPrice}}{{gitem.unitName?"/"+gitem.unitName:""}}</view>
             </view>
         </view>
     </view>

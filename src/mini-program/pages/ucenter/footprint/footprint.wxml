@@ -8,7 +8,7 @@
           <view class="info">
             <view class="name">{{iitem.name}}</view>
             <view class="subtitle">{{iitem.shortDescription}}</view>
-            <view class="price">￥{{iitem.price}}</view>
+            <view class="price">￥{{iitem.price}}{{iitem.unitName?"/"+iitem.unitName:""}}</view>
           </view>
         </view>
       </view>

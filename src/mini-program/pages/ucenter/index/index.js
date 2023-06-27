@@ -126,6 +126,11 @@ Page({
   onSectionItemClick: function (event) {
 
   },
+  bindCallMe: function () {
+    wx.makePhoneCall({
+      phoneNumber: '0371-00000000'
+    });
+  },
   getPhoneNumber: function (e) {
     //code	String	动态令牌。可通过动态令牌换取用户手机号。使用方法详情 phonenumber.getPhoneNumber 接口
     console.log(e.detail);
@@ -179,6 +184,9 @@ Page({
         console.log(err)
       });
 
+      wx.reLaunch({
+        url: "/pages/index/index",
+      });
     }).catch((err) => {
       console.log(err)
     })
@@ -201,13 +209,24 @@ Page({
           });
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
+
+          app.globalData.userInfo = {
+            name: '点击登录',
+            avatar: app.globalData.defaultAvatar
+          };
+
           // wx.clearStorageSync();
           // wx.switchTab({
           //   url: '/pages/index/index'
           // });
+
+          wx.reLaunch({
+            url: "/pages/index/index",
+          });
         }
       }
     })
 
   }
+
 })

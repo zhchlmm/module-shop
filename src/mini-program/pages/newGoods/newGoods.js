@@ -31,9 +31,22 @@ Page({
   getGoodsList() {
     var that = this;
 
-    util.request(api.GoodsList, { isNew: 1, page: that.data.page, size: that.data.size, order: that.data.currentSortOrder, sort: that.data.currentSortType, categoryId: that.data.categoryId })
+    util.request(api.GoodsList, {
+        isNew: 1,
+        page: that.data.page,
+        size: that.data.size,
+        order: that.data.currentSortOrder,
+        sort: that.data.currentSortType,
+        categoryId: that.data.categoryId
+      })
       .then(function (res) {
         if (res.errno === 0) {
+
+          res.data?.goodsList?.forEach(pro => {
+            pro.price = util.formatPrice(pro.price);
+            pro.oldPrice = util.formatPrice(pro.oldPrice);
+          });
+
           that.setData({
             goodsList: res.data.goodsList,
             filterCategory: res.data.filterCategory

@@ -11,6 +11,12 @@ Page({
     let that = this;
     util.request(api.Wishlist).then(function (res) {
       if (res.success === true) {
+
+        res.data?.forEach(pro => {
+          pro.price = util.formatPrice(pro.price);
+          pro.oldPrice = util.formatPrice(pro?.oldPrice);
+        });
+
         that.setData({
           collectList: res.data
         });

@@ -88,6 +88,7 @@ namespace Shop.Module.Catalog.Services
             }
             var gridData = await query
                 .Include(x => x.ThumbnailImage)
+                .Include(x => x.Unit)
                 .Where(c => c.IsPublished && c.IsVisibleIndividually)
                 .ToStandardTableResult(param, x => new GoodsListResult
                 {
@@ -105,7 +106,8 @@ namespace Shop.Module.Catalog.Services
                     RatingAverage = x.RatingAverage,
                     ShortDescription = x.ShortDescription,
                     IsPublished = x.IsPublished,
-                    IsFeatured = x.IsFeatured
+                    IsFeatured = x.IsFeatured,
+                    UnitName = x.Unit.Name
                 });
             return gridData;
         }
@@ -115,6 +117,7 @@ namespace Shop.Module.Catalog.Services
             // 推荐商品暂时随机取商品
             var result = await _productRepository.Query()
                 .Include(x => x.ThumbnailImage)
+                .Include(x => x.Unit)
                 .Where(c => c.IsPublished && c.IsAllowToOrder && c.IsVisibleIndividually)
                 .OrderBy(c => Guid.NewGuid())
                 .Select(x => new GoodsListResult
@@ -133,7 +136,8 @@ namespace Shop.Module.Catalog.Services
                     RatingAverage = x.RatingAverage,
                     ShortDescription = x.ShortDescription,
                     IsPublished = x.IsPublished,
-                    IsFeatured = x.IsFeatured
+                    IsFeatured = x.IsFeatured,
+                    UnitName = x.Unit.Name
                 })
                 .Take(6)
                 .ToListAsync();

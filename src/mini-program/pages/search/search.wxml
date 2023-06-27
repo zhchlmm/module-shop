@@ -62,7 +62,7 @@
                 <view class="text-cut text text text-left">{{iitem.name}}</view>
                 <view class="text-cut text-gray text-sm text-left">{{iitem.shortDescription}}</view>
                 <view class="flex">
-                  <view class="text-red text-bold">￥{{iitem.price}}</view>
+                  <view class="text-red text-bold">￥{{iitem.price}}{{iitem.unitName?"/"+iitem.unitName:""}}</view>
                   <view wx:if="{{iitem.oldPrice&&iitem.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{iitem.oldPrice}}</view>
                 </view>
               </view>

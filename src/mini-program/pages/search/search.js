@@ -19,7 +19,10 @@ Page({
     size: 20,
     // categoryId: 0,
 
-    categories: [{ id: 0, name: '全部' }],
+    categories: [{
+      id: 0,
+      name: '全部'
+    }],
     current: {},
     pageNum: 1,
     pageSize: 6,
@@ -89,7 +92,9 @@ Page({
   },
   getHelpKeyword: function () {
     let that = this;
-    util.request(api.SearchHelper, { keyword: that.data.keyword }).then(function (res) {
+    util.request(api.SearchHelper, {
+      keyword: that.data.keyword
+    }).then(function (res) {
       if (res.errno === 0) {
         that.setData({
           helpKeyword: res.data
@@ -135,12 +140,23 @@ Page({
   },
   getGoodsList: function () {
     let that = this;
-    util.request(api.GoodsList, { keyword: that.data.keyword, page: that.data.page, size: that.data.size, sort: that.data.currentSortType, order: that.data.currentSortOrder, categoryId: that.data.categoryId }).then(function (res) {
+    util.request(api.GoodsList, {
+      keyword: that.data.keyword,
+      page: that.data.page,
+      size: that.data.size,
+      sort: that.data.currentSortType,
+      order: that.data.currentSortOrder,
+      categoryId: that.data.categoryId
+    }).then(function (res) {
       if (res.errno === 0) {
+        res.data?.goodsList?.forEach(pro => {
+          pro.price = util.formatPrice(pro.price);
+          pro.oldPrice = util.formatPrice(pro.oldPrice);
+        });
         that.setData({
           searchStatus: true,
           categoryFilter: false,
-          goodsList: res.data.data,
+          goodsList: res.data.goodsList,
           filterCategory: res.data.filterCategory,
           page: res.data.currentPage,
           size: res.data.numsPerPage
@@ -262,6 +278,11 @@ Page({
     util.request(api.GoodsGrid, params, "POST")
       .then(function (res) {
         if (res.success === true) {
+          res.data?.list?.forEach(pro => {
+            pro.price = util.formatPrice(pro.price);
+            pro.oldPrice = util.formatPrice(pro.oldPrice);
+          });
+          
           let origin_data = that.data.pageData || [];
           let new_data = origin_data.concat(res.data.list)
           that.setData({

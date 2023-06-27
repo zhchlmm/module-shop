@@ -29,7 +29,7 @@ namespace Shop.WebApi.Controllers
         [HttpGet("{id:int:min(1)}")]
         public async Task<Result> Get(int id)
         {
-            var result = await _productService.GetGoodsByCache(id);
+            GoodsGetResult result = await _productService.GetGoodsByCache(id);
             return Result.Ok(result);
         }
 

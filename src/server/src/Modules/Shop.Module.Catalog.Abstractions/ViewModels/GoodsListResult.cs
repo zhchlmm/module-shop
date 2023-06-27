@@ -11,6 +11,8 @@ namespace Shop.Module.Catalog.ViewModels
 
         public string Slug { get; set; }
 
+        public string UnitName { get; set; }
+
         public decimal Price { get; set; }
 
         public decimal? OldPrice { get; set; }
@@ -90,7 +92,8 @@ namespace Shop.Module.Catalog.ViewModels
                 RatingAverage = x.RatingAverage,
                 ShortDescription = x.ShortDescription,
                 IsPublished = x.IsPublished,
-                IsFeatured = x.IsFeatured
+                IsFeatured = x.IsFeatured,
+                UnitName =x.Unit?.Name
             };
         }
     }
