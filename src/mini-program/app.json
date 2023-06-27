@@ -33,10 +33,12 @@
     "pages/help/help"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#55af43",
+    "backgroundColor": "#f6f6f6",
     "navigationBarTitleText": "菜蕊商城",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "backgroundColor": "#ffffff",

@@ -14,7 +14,7 @@
   </view>
   <view class="bg-white solid-top">
     <view class="flex flex-direction padding">
-      <button bindtap="save" class="cu-btn bg-red lg">提交</button>
+      <button bindtap="save" class="cu-btn fb-btn lg">提交</button>
     </view>
   </view>
 </form>

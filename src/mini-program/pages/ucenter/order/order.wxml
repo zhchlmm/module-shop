@@ -1,10 +1,10 @@
 <scroll-view scroll-x class="bg-white nav fixed" style="top:0px">
     <view class="flex text-center">
-        <view class="cu-item flex-sub {{ showType == 0 ? 'text-red cur' : ''}}" bindtap="switchTab" data-id="{{0}}">全部</view>
-        <view class="cu-item flex-sub {{ showType == 1 ? 'text-red cur' : ''}}" bindtap="switchTab" data-id="{{1}}">待付款</view>
-        <view class="cu-item flex-sub {{ showType == 2 ? 'text-red cur' : ''}}" bindtap="switchTab" data-id="{{2}}">待收货</view>
-        <view class="cu-item flex-sub {{ showType == 3 ? 'text-red cur' : ''}}" bindtap="switchTab" data-id="{{3}}">已完成</view>
-        <view class="cu-item flex-sub {{ showType == 4 ? 'text-red cur' : ''}}" bindtap="switchTab" data-id="{{4}}">已取消</view>
+        <view class="cu-item flex-sub {{ showType == 0 ? 'text-green cur' : ''}}" bindtap="switchTab" data-id="{{0}}">全部</view>
+        <view class="cu-item flex-sub {{ showType == 1 ? 'text-green cur' : ''}}" bindtap="switchTab" data-id="{{1}}">待付款</view>
+        <view class="cu-item flex-sub {{ showType == 2 ? 'text-green cur' : ''}}" bindtap="switchTab" data-id="{{2}}">待收货</view>
+        <view class="cu-item flex-sub {{ showType == 3 ? 'text-green cur' : ''}}" bindtap="switchTab" data-id="{{3}}">已完成</view>
+        <view class="cu-item flex-sub {{ showType == 4 ? 'text-green cur' : ''}}" bindtap="switchTab" data-id="{{4}}">已取消</view>
     </view>
 </scroll-view>
 <view style="margin-top:110rpx;">
@@ -15,7 +15,7 @@
                     <text class="text-sm">订单编号：{{item.no}}</text>
                 </view>
                 <view class='action'>
-                    <text class="text-sm text-red">{{item.orderStatusString}}</text>
+                    <text class="text-sm text-green">{{item.orderStatusString}}</text>
                 </view>
             </view>
             <view class="cu-card article no-card">
@@ -30,7 +30,7 @@
                                     </view>
                                     <view>
                                         <view class="cu-tag sm bg-white">× {{gitem.quantity}}{{gitem.unitName?"/"+gitem.unitName:""}}</view>
-                                        <view class="cu-tag bg-red light sm round">七天退换</view>
+                                        <view class="cu-tag bg-green light sm round">七天退换</view>
                                     </view>
                                 </view>
                             </view>
@@ -56,11 +56,11 @@
                 <!-- <button wx:if="{{item.orderStatus==60&&!item.isReviewed}}" class="cu-btn sm round line shadow margin-left-xs">评价晒单</button> -->
                 <view wx:if="{{item.orderStatus==20 || item.orderStatus==25}}">
                     <button bindtap="showCancelModal" data-id="{{item.id}}" class="cu-btn sm round line shadow margin-left-xs">取消订单</button>
-                    <button catchtap="payOrder" data-id="{{item.id}}" data-amount="{{item.orderTotal}}" class="cu-btn sm round bg-red shadow margin-left-xs">去支付</button>
+                    <button catchtap="payOrder" data-id="{{item.id}}" data-amount="{{item.orderTotal}}" class="cu-btn sm round bg-green shadow margin-left-xs">去支付</button>
                 </view>
                 <view wx:elif="{{item.orderStatus==60 || item.orderStatus==70}}">
                     <button bindtap="showDeleteModal" data-id="{{item.id}}" class="cu-btn sm round line shadow margin-left-xs">删除订单</button>
-                    <button bindtap="againOrder" data-id="{{item.id}}" class="cu-btn sm round line-red shadow margin-left-xs">再次购买</button>
+                    <button bindtap="againOrder" data-id="{{item.id}}" class="cu-btn sm round line-green shadow margin-left-xs">再次购买</button>
                 </view>
             </view>
         </view>
@@ -80,7 +80,7 @@
         <view class="padding-xl">确认删除订单吗？</view>
         <view class="cu-bar bg-white">
             <view class="action margin-0 flex-sub" bindtap="hideModal">取消</view>
-            <view class="action margin-0 flex-sub text-red solid-left" bindtap="deleteOrder">确定</view>
+            <view class="action margin-0 flex-sub text-green solid-left" bindtap="deleteOrder">确定</view>
         </view>
     </view>
 </view>
@@ -95,7 +95,7 @@
         <view class="padding-xl">确认取消订单吗？</view>
         <view class="cu-bar bg-white">
             <view class="action margin-0 flex-sub" bindtap="hideCancelModal">取消</view>
-            <view class="action margin-0 flex-sub text-red solid-left" bindtap="cancelOrder">确定</view>
+            <view class="action margin-0 flex-sub text-green solid-left" bindtap="cancelOrder">确定</view>
         </view>
     </view>
 </view>

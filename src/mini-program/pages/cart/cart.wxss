@@ -347,6 +347,6 @@ page{
     text-align: center;
     line-height: 100rpx;
     font-size: 29rpx;
-    background: #b4282d;
+    background: #55af43;
     color: #fff;
 }

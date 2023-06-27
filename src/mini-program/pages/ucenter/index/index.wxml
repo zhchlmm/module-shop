@@ -112,7 +112,7 @@
       </view>
       <view class="flex flex-direction">
         <!-- <button class="cu-btn bg-green lg" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权登录</button> -->
-        <button style="width:100%;height:100rpx;border-radius:0;" class="cu-btn bg-blue" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN">授权微信登录</button>
+        <button class="cu-btn bg-green lg" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN">授权微信登录</button>
       </view>
     </view>
   </view>

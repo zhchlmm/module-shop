@@ -24,13 +24,13 @@ Page({
       'success': function (res) {
         // console.log(res);
         wx.redirectTo({
-          url: '/pages/payResult/payResult?status=1&orderId=' + that.data.orderId,
+          url: `/pages/payResult/payResult?status=1&orderId=${that.data.orderId}&orderTotal=${that.data.orderTotal}`,
         })
       },
       'fail': function (res) {
         // console.log(res);
         wx.redirectTo({
-          url: '/pages/payResult/payResult?status=0&orderId=' + that.data.orderId,
+          url: `/pages/payResult/payResult?status=0&orderId=${that.data.orderId}&orderTotal=${that.data.orderTotal}`,
         })
       },
       'complete': function (res) {
