@@ -9,5 +9,6 @@
 }
 
 .widget .cu-list .cu-item .image{
-  padding:10rpx;
+  max-width: 350rpx;
+  max-height: 350rpx;
 }

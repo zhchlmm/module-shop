@@ -113,9 +113,9 @@ namespace Shop.Module.Catalog.ViewModels
         public IList<ProductGetMediaResult> ProductImages { get; set; } = new List<ProductGetMediaResult>();
         public IList<GoodsGetIssueResult> Issues { get; set; } = new List<GoodsGetIssueResult>()
         {
-            new GoodsGetIssueResult (){ Id =1, Answer="自收到商品之日起24小时内，顾客可联系我们申请售后，我们将根据具体情况进行处理。", ProductId = 0, Question="1.如何申请退货？"},
-            new GoodsGetIssueResult (){ Id =1, Answer="如需开具发票，请在付款后联系我们，并提供单位抬头等相关信息。", ProductId = 0, Question="2.如何开具发票？"},
-            new GoodsGetIssueResult (){ Id =1, Answer="默认使用专车直配发货（个别商品使用其他快递），配送范围覆盖全郑州大部分地区。", ProductId = 0, Question="3.如何发货？"}
+            new GoodsGetIssueResult (){ Id =1, Answer="自收到商品之日起24小时内，如商品有质量问题，顾客可联系我们申请售后，我们将根据具体情况进行处理。", ProductId = 0, Question="1.如何申请售后？"},
+            new GoodsGetIssueResult (){ Id =1, Answer="如需开具发票，请您在付款后30天内联系我们，并提供单位抬头等相关信息。", ProductId = 0, Question="2.如何开具发票？"},
+            new GoodsGetIssueResult (){ Id =1, Answer="默认使用专车直配发货（个别商品使用快递发货），配送范围覆盖郑州全部区域，其他区域请电话联系确认。", ProductId = 0, Question="3.发货方式及配送范围？"}
         };
     }
     public class GoodsGetAttributeResult

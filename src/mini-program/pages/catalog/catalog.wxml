@@ -23,7 +23,7 @@
   </view> -->
 
   <view class="products">
-    <scroll-view class="cate basis-xs" scroll-y="true">
+    <scroll-view class="cate" style="width:25%;" scroll-y="true">
       <!-- <navigator url="url" class="banner" url="/pages/category/category?parentId={{current.id}}">
         <image class="image" src="{{current.thumbnailUrl}}" mode="aspectFill"></image>
         <view wx:if="{{current.description}}" class="txt">{{current.description}}</view>
@@ -41,13 +41,13 @@
       </view>
     </scroll-view>
 
-    <view class="list basis-xl">
+    <view class="list" style="width: 75%;">
 
       <view class="grid col-2 padding-xs">
-        <view class="cu-card case" bindtap="navToGoods" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem">
-            <view class="cu-item shadow" style="margin:6rpx;">
+        <view class="cu-card case" bindtap="navToGoods" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem" wx:key="index">
+            <view class="cu-item" style="margin: 2px;">
                 <view class="image">
-                    <image class="bg-white" src="{{iitem.thumbnailUrl}}" mode="aspectFill" style="max-height:275rpx;"></image>
+                    <image src="{{iitem.thumbnailUrl}}" mode="aspectFill" style="max-height: 275rpx;padding: 10rpx;"></image>
                 </view>
                 <view class="cu-list">
                     <view class="cu-item">

@@ -23,28 +23,30 @@
         <view class="products" wx:for="{{ products }}" wx:key wx:for-index="idx" wx:for-item="item1">
           <view wx:if="{{item1.widgetZoneId==widgetZoneId && item1.id == item.id}}">
             <!-- <navigator url="../newGoods/newGoods"> -->
-              <view class="solid-bottom">
-                <view class="padding-lr-xs bg-white margin-top-sm">
-                  <view class="padding-tb">
-                    <text class="icon-titles text-cyan"></text>
-                    <text>{{item1.widgetName}}</text>
-                  </view>
+            <view class="solid-bottom">
+              <view class="padding-lr-xs bg-white margin-top-sm">
+                <view class="padding-tb">
+                  <text class="icon-titles text-cyan"></text>
+                  <text>{{item1.widgetName}}</text>
                 </view>
               </view>
+            </view>
             <!-- </navigator> -->
-            <view class="cu-list grid col-2">
-              <view class="cu-item padding-xs" bindtap="navToGoods" data-id="{{item2.id}}" wx:for="{{item1.products}}" wx:for-item="item2" wx:key style="padding-top:0rpx;">
-                <view class="image">
-                  <image src="{{item2.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;"></image>
-                </view>
-                <view class="cu-list">
-                  <view class="cu-item">
-                    <view class="content padding-lr-sm">
-                      <view class="text-cut text text text-left">{{item2.name}}</view>
-                      <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
-                      <view class="flex">
-                        <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
-                        <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+            <view class="grid col-2 padding-xs">
+              <view class="cu-card case" bindtap="navToGoods" data-id="{{item2.id}}" wx:for="{{item1.products}}" wx:for-item="item2" wx:key="index">
+                <view style="margin:2px;" class="cu-item">
+                  <view class="image">
+                    <image src="{{item2.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;padding: 10rpx;"></image>
+                  </view>
+                  <view class="cu-list">
+                    <view class="cu-item">
+                      <view class="content padding-lr-sm">
+                        <view class="text-cut text text text-left">{{item2.name}}</view>
+                        <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
+                        <view class="flex">
+                          <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
+                          <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+                        </view>
                       </view>
                     </view>
                   </view>
@@ -58,21 +60,22 @@
         <view class="hot" wx:for="{{ simplProducts }}" wx:for-index="idx" wx:for-item="item1" wx:key>
           <view wx:if="{{item1.widgetZoneId==widgetZoneId && item1.id == item.id}}">
             <!-- <navigator url="../hotGoods/hotGoods"> -->
-              <view class="solid-bottom">
-                <view class="padding-lr-xs bg-white margin-top-sm">
-                  <view class="padding-tb">
-                    <text class="icon-titles text-cyan"></text>
-                    <text>{{item1.widgetName}}</text>
-                  </view>
+            <view class="solid-bottom">
+              <view class="padding-lr-xs bg-white margin-top-sm">
+                <view class="padding-tb">
+                  <text class="icon-titles text-cyan"></text>
+                  <text>{{item1.widgetName}}</text>
                 </view>
               </view>
+            </view>
             <!-- </navigator> -->
             <!-- <view class="cu-card article no-card"> -->
-            <view class="cu-list grid col-2">
-              <view class="cu-item padding-xs" wx:for="{{item1.products}}" wx:for-index="index" wx:for-item="item2" wx:key="{{item2.id}}" bindtap="navToGoods" data-id="{{item2.id}}">
-                <view class="image">
-                  <image src="{{item2.thumbnailUrl}}" mode="aspectFit"></image>
-                  <!-- <view class="desc">
+            <view class="grid col-2 padding-xs">
+              <view class="cu-card case" wx:for="{{item1.products}}" wx:for-index="index" wx:for-item="item2" wx:key="{{item2.id}}" bindtap="navToGoods" data-id="{{item2.id}}">
+                <view style="margin:2px;" class="cu-item">
+                  <view class="image">
+                    <image src="{{item2.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;padding: 10rpx;"></image>
+                    <!-- <view class="desc">
                     <view class="text-content">
                       <view>
                         <text wx:if="{{item2.isFeatured}}" class="cu-tag bg-red sm round">精品</text>
@@ -90,16 +93,17 @@
                       </view>
                     </view>
                   </view> -->
-                </view>
+                  </view>
 
-                <view class="cu-list">
-                  <view class="cu-item">
-                    <view class="content padding-lr-sm">
-                      <view class="text-cut text text text-left">{{item2.name}}</view>
-                      <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
-                      <view class="flex">
-                        <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
-                        <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+                  <view class="cu-list">
+                    <view class="cu-item">
+                      <view class="content padding-lr-sm">
+                        <view class="text-cut text text text-left">{{item2.name}}</view>
+                        <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
+                        <view class="flex">
+                          <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
+                          <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+                        </view>
                       </view>
                     </view>
                   </view>
