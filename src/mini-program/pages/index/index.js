@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
+const user = require('../../services/user.js');
 var HtmlToJson = require('../../lib/wxParse/html2json.js');
 const app = getApp()
 
@@ -86,6 +87,9 @@ Page({
 
                   list.forEach(p => {
                     p.products?.forEach(pro => {
+                      // pro.original_price = pro.price;
+                      // pro.original_oldPrice = pro.oldPrice;
+
                       pro.price = util.formatPrice(pro.price);
                       pro.oldPrice = util.formatPrice(pro.oldPrice);
                     });
@@ -100,6 +104,9 @@ Page({
 
                   list.forEach(p => {
                     p.products?.forEach(pro => {
+                      // pro.original_price = pro.price;
+                      // pro.original_oldPrice = pro.oldPrice;
+
                       pro.price = util.formatPrice(pro.price);
                       pro.oldPrice = util.formatPrice(pro.oldPrice);
                     });
@@ -129,8 +136,11 @@ Page({
     // 页面渲染完成
   },
   onShow: function () {
-    // 页面显示
-  },
+    // 页面显示 
+  }, 
+  // onTabItemTap(item) {
+  //   this.formatPrice();
+  // },
   onHide: function () {
     // 页面隐藏
   },

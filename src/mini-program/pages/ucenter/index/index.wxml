@@ -107,11 +107,11 @@
       <view class="padding-xl">
         <view class="text-center">
           <!-- <text class="icon-titles text-blue"></text> -->
-          <text class="text-sm">授权使用微信绑定手机号码登录</text>
+          <text class="text-sm">首次登录菜蕊商城，需要授权使用微信绑定手机号码登录！</text>
         </view>
       </view>
       <view class="flex flex-direction">
-        <!-- <button class="cu-btn bg-green lg" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权登录</button> -->
+        <!-- <button class="cu-btn bg-green margin-bottom lg" open-type="getUserInfo" bindgetuserinfo="onWechatLogin">授权微信登录</button> -->
         <button class="cu-btn bg-green lg" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" lang="zh_CN">授权微信登录</button>
       </view>
     </view>

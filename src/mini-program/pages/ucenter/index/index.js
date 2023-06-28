@@ -5,10 +5,7 @@ const app = getApp();
 
 Page({
   data: {
-    userInfo: {
-      name: '',
-      avatar: app.globalData.defaultAvatar
-    },
+    userInfo: app.globalData.userInfo,
     shopName: app.globalData.title,
     showLoginDialog: false
   },
@@ -37,10 +34,10 @@ Page({
   },
 
   onUserInfoClick: function () {
-    if (wx.getStorageSync('token')) {
+    if (!wx.getStorageSync('token')) {
+      // 优化登录逻辑，默认无弹窗登录并获取用户信息，未授权用户信息和手机号时，弹窗进行授权！
 
-    } else {
-      this.showLoginDialog();
+      this.onWechatLogin(this);
     }
   },
 
@@ -60,31 +57,18 @@ Page({
     // 阻止冒泡
   },
 
-  onWechatLogin(e) {
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      if (e.detail.errMsg === 'getUserInfo:fail auth deny') {
-        return false
-      }
-      wx.showToast({
-        title: '微信登录失败',
-      })
-      return false
-    }
+  onWechatLogin(that) {
 
     wx.showToast({
       title: '正在登录...',
       icon: 'none'
     });
-    util.login().then((res) => {
-      // return util.request(api.AuthLoginByWeixin, {
-      //   code: res,
-      //   userInfo: e.detail
-      // }, 'POST');
 
+    util.login().then((res) => {
       return util.request(api.LoginByWeixin, {
         code: res,
-        nickName: e.detail.userInfo.nickName,
-        avatarUrl: e.detail.userInfo.avatarUrl
+        nickName: "微信用户", //e.detail.userInfo.nickName,
+        avatarUrl: app.globalData.defaultAvatar //e.detail.userInfo.avatarUrl
       }, 'POST');
     }).then((res) => {
       wx.hideLoading();
@@ -94,22 +78,24 @@ Page({
           title: '微信登录失败',
         })
         return false;
-      } else {
-        wx.showToast({
-          title: '登录成功'
-        });
       }
+
       let userInfo = {
         name: res.data.name,
-        avatar: res.data.avatar
+        avatar: res.data.avatar,
+        phoneNumber: res.data.phone,
+        roles: res.data.roles
       };
+
       // 设置用户信息
-      this.setData({
+      that.setData({
         userInfo: userInfo,
-        showLoginDialog: false
+        showLoginDialog: !res.data.phone
       });
+
       app.globalData.userInfo = userInfo;
       app.globalData.token = res.data.token;
+
       wx.setStorageSync('userInfo', JSON.stringify(userInfo));
       wx.setStorageSync('token', res.data.token);
     }).catch((err) => {
@@ -126,78 +112,47 @@ Page({
   onSectionItemClick: function (event) {
 
   },
+
   bindCallMe: function () {
     wx.makePhoneCall({
-      phoneNumber: '0371-00000000'
+      phoneNumber: '13523536961'
     });
   },
   getPhoneNumber: function (e) {
     //code	String	动态令牌。可通过动态令牌换取用户手机号。使用方法详情 phonenumber.getPhoneNumber 接口
     console.log(e.detail);
 
-    wx.showToast({
-      title: '正在登录...',
-      icon: 'none'
-    });
-
     const mobileCode = e.detail.code;
+    let that = this;
 
-    util.login().then((res) => {
+    util.request(api.UpdateWeixinMobile, {
+        code: mobileCode
+      }, 'POST')
+      .then(res => {
+        if (res.success) {
+          let userInfo = app.globalData.userInfo;
+          userInfo.phoneNumber = res.data;
 
-      return util.request(api.LoginByWeixin, {
-        code: res
-      }, 'POST');
-    }).then((res) => {
-      wx.hideLoading();
-      // console.log(res)
-      if (res.success !== true) {
-        wx.showToast({
-          title: '微信登录失败',
-        })
-        return false;
-      } else {
-        wx.showToast({
-          title: '登录成功'
-        });
-      }
-      let userInfo = {
-        name: res.data.name,
-        avatar: res.data.avatar,
-        phoneNumber: res.data.phone,
-        roles: res.data.roles
-      };
-      // 设置用户信息
-      this.setData({
-        userInfo: userInfo,
-        showLoginDialog: false
-      });
+          // 设置用户信息
+          that.setData({
+            userInfo: userInfo,
+            showLoginDialog: false
+          });
 
-      app.globalData.userInfo = userInfo;
-      app.globalData.token = res.data.token;
-
-      wx.setStorageSync('userInfo', JSON.stringify(userInfo));
-      wx.setStorageSync('token', res.data.token);
-
-      util.request(api.UpdateWeixinMobile, {
-          code: mobileCode
-        }, 'POST')
-        .then(res => {
-          if (res.success === true) {
-            wx.reLaunch({
-              url: "/pages/index/index",
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        });
-
-    }).catch((err) => {
-      console.log(err)
-    })
+          app.globalData.userInfo = userInfo;
+          wx.setStorageSync('userInfo', JSON.stringify(userInfo));
+        } else {
+          wx.showToast({
+            title: '微信登录失败',
+          })
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
   },
-  // TODO 移到个人信息页面
+  // 移到个人信息页面
   exitLogin: function () {
     let that = this;
     wx.showModal({
@@ -217,22 +172,17 @@ Page({
               avatar: app.globalData.defaultAvatar
             }
           });
+
+          app.globalData.userInfo = {
+            name: '',
+            avatar: app.globalData.defaultAvatar
+          };
+          app.globalData.token = '';
+
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
 
-          app.globalData.userInfo = {
-            name: '点击登录',
-            avatar: app.globalData.defaultAvatar
-          };
-
-          // wx.clearStorageSync();
-          // wx.switchTab({
-          //   url: '/pages/index/index'
-          // });
-
-          wx.reLaunch({
-            url: "/pages/index/index",
-          });
+          // wx.clearStorageSync(); 
         } else {
 
           wx.showToast({

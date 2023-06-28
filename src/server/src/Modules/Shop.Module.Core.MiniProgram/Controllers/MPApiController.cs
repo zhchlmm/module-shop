@@ -205,7 +205,7 @@ namespace Shop.Module.Core.MiniProgram.Controllers
                 var identityResult = await _userManager.ChangePhoneNumberAsync(user, phoneNumber, changePhoneNumberToken);
                 if (identityResult.Succeeded)
                 {
-                    return Result.Ok();
+                    return Result.Ok(phoneNumber);
                 }
             }
 

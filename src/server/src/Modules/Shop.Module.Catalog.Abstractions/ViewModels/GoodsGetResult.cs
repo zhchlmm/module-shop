@@ -113,9 +113,9 @@ namespace Shop.Module.Catalog.ViewModels
         public IList<ProductGetMediaResult> ProductImages { get; set; } = new List<ProductGetMediaResult>();
         public IList<GoodsGetIssueResult> Issues { get; set; } = new List<GoodsGetIssueResult>()
         {
-            new GoodsGetIssueResult (){ Id =1, Answer="1.自收到商品之日起30日内，顾客可申请无忧退货，退款将原路返还，不同的银行处理时间不同，", ProductId = 0, Question="如何申请退货？"},
-            new GoodsGetIssueResult (){ Id =1, Answer="1.如需开具普通发票，请在下单时选择“我要开发票”并填写相关信息（APP仅限2.4.0及以", ProductId = 0, Question="如何开具发票？"},
-            new GoodsGetIssueResult (){ Id =1, Answer="严选默认使用顺丰快递发货（个别商品使用其他快递），配送范围覆盖全国大部分地区（港澳台地区除", ProductId = 0, Question="使用什么快递发货？"}
+            new GoodsGetIssueResult (){ Id =1, Answer="自收到商品之日起24小时内，顾客可联系我们申请售后，我们将根据具体情况进行处理。", ProductId = 0, Question="1.如何申请退货？"},
+            new GoodsGetIssueResult (){ Id =1, Answer="如需开具发票，请在付款后联系我们，并提供单位抬头等相关信息。", ProductId = 0, Question="2.如何开具发票？"},
+            new GoodsGetIssueResult (){ Id =1, Answer="默认使用专车直配发货（个别商品使用其他快递），配送范围覆盖全郑州大部分地区。", ProductId = 0, Question="3.如何发货？"}
         };
     }
     public class GoodsGetAttributeResult

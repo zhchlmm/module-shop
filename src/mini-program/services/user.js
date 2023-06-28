@@ -18,7 +18,10 @@ function loginByWeixin() {
       return util.getUserInfo();
     }).then((userInfo) => {
       //登录远程服务器
-      util.request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
+      util.request(api.AuthLoginByWeixin, {
+        code: code,
+        userInfo: userInfo
+      }, 'POST').then(res => {
         console.log(res);
         if (res.errno === 0) {
           //存储用户信息
@@ -43,15 +46,15 @@ function loginByWeixin() {
  */
 function checkLogin() {
   return new Promise(function (resolve, reject) {
+
     if (wx.getStorageSync('userInfo') && wx.getStorageSync('token')) {
-      util.checkSession().then(() => {
+      util.checkSession().then((res) => {
         resolve(true);
       }).catch(() => {
         reject(false);
       });
     } else {
-      resolve(false);
-      // reject(false);
+      reject(false);
     }
   });
 }
@@ -61,14 +64,3 @@ module.exports = {
   loginByWeixin,
   checkLogin,
 };
-
-
-
-
-
-
-
-
-
-
-
