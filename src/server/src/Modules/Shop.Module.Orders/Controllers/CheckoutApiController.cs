@@ -121,7 +121,7 @@ namespace Shop.Module.Orders.Controllers
                 CustomerId = user.Id,
                 DiscountAmount = 0,
                 OrderNote = model.OrderNote,
-                PaymentType = PaymentType.OnlinePayment,
+                PaymentType = PaymentType.CashOnDelivery,
                 ShippingMethod = ShippingMethod.Free,
                 ShippingFeeAmount = 0,
                 ShippingUserAddressId = model.ShippingUserAddressId
@@ -139,7 +139,7 @@ namespace Shop.Module.Orders.Controllers
                 DiscountAmount = 0,
                 OrderNote = model.OrderNote,
                 ShippingUserAddressId = model.ShippingUserAddressId,
-                PaymentType = PaymentType.OnlinePayment,
+                PaymentType = PaymentType.CashOnDelivery,
                 ShippingMethod = ShippingMethod.Free,
                 ShippingFeeAmount = 0,
             };
@@ -175,7 +175,7 @@ namespace Shop.Module.Orders.Controllers
                 DiscountAmount = 0,
                 OrderNote = model.OrderNote,
                 ShippingUserAddressId = model.ShippingUserAddressId,
-                PaymentType = PaymentType.OnlinePayment,
+                PaymentType = PaymentType.CashOnDelivery,
                 ShippingMethod = ShippingMethod.Free,
                 ShippingFeeAmount = 0,
             };

@@ -10,7 +10,7 @@
 
   <view class="catalog">
     <scroll-view class="nav" scroll-x="true">
-      <view class="item padding-lr-sm text-cut {{ current.id == item.id ? 'active' : ''}}" wx:for="{{categories}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate" wx:key>
+      <view class="item padding-lr-sm text-cut {{ current.id == item.id ? 'active' : ''}}" wx:for="{{categories}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate" wx:key="id">
         <image wx:if="{{item.thumbnailUrl}}" class="icon" src="{{item.thumbnailUrl}}" mode="aspectFill"></image>
         <view class="{{ current.id == item.id ? 'text-red text' : 'text-sm'}}">{{item.name}}</view>
       </view>
@@ -34,7 +34,7 @@
         <text class="line"></text>
       </view> -->
       <view class="bd">
-        <view bindtap="switchSubCate" data-id="{{item.id}}" data-parent-id="{{item.parentId}}" class="item {{ subId == item.id ? 'active' : ''}}" wx:for="{{current.subCategories}}" wx:key>
+        <view bindtap="switchSubCate" data-id="{{item.id}}" data-parent-id="{{item.parentId}}" class="item {{ subId == item.id ? 'active' : ''}}" wx:for="{{current.subCategories}}" wx:key="id">
           <!-- <image class="icon" src="{{item.thumbnailUrl}}"></image> -->
           <text class="txt">{{item.name}}</text>
         </view>

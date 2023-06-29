@@ -76,9 +76,12 @@ Page({
     util.request(url, param).then(function (res) {
       wx.hideLoading();
       if (res.success === true) {
+        var addressId = that.addressId ? that.addressId : res.data.address.userAddressId;
+
         that.setData({
           checkedGoodsList: res.data.items,
           checkedAddress: res.data.address,
+          addressId: addressId,
           actualPrice: 0,
           checkedCoupon: 1,
           couponList: [],
@@ -150,7 +153,8 @@ Page({
       wx.hideLoading();
       if (res.success === true && res.data && res.data.orderId) {
         wx.redirectTo({
-          url: `/pages/pay/pay?orderId=${res.data.orderId}&orderTotal=${res.data.orderTotal}`
+          url: `/pages/ucenter/orderDetail/orderDetail?id=${res.data.orderId}`
+          // url: `/pages/pay/pay?orderId=${res.data.orderId}&orderTotal=${res.data.orderTotal}`
         });
       } else {
         wx.showToast({

@@ -1,8 +1,8 @@
 <view class="container">
   <view class="service-policy">
-    <view class="item">30天无忧退货</view>
-    <view class="item">48小时快速退款</view>
-    <view class="item">满88元免邮费</view>
+    <view class="item">一站式轻松采购</view>
+    <view class="item">24小时无忧售后</view>
+    <view class="item">免费专车配送</view>
   </view>
   <view class="no-cart" wx:if="{{cart.items.length <= 0}}">
     <view class="c">
@@ -14,7 +14,7 @@
     <view class="list">
       <view class="group-item">
         <view class="goods">
-          <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cart.items}}" wx:key="{{item.id}}">
+          <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cart.items}}" wx:key="id">
             <view class="checkbox {{item.isChecked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
             <view class="cart-goods">
               <image class="img" src="{{item.productImage}}"></image>

@@ -59,9 +59,8 @@ Page({
 
   onWechatLogin(that) {
 
-    wx.showToast({
+    wx.showLoading({
       title: '正在登录...',
-      icon: 'none'
     });
 
     util.login().then((res) => {
@@ -99,7 +98,8 @@ Page({
       wx.setStorageSync('userInfo', JSON.stringify(userInfo));
       wx.setStorageSync('token', res.data.token);
     }).catch((err) => {
-      console.log(err)
+      wx.hideLoading();
+      console.log(err);
     })
   },
 

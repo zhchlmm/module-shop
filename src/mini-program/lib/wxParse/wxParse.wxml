@@ -24,7 +24,7 @@
 
 <template name="WxEmojiView">
   <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}">
-    <block wx:for="{{item.textArray}}" wx:key="">
+    <block wx:for="{{item.textArray}}" wx:key="index">
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">{{item.text}}</block>
       <block wx:elif="{{item.node == 'element'}}">
         <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
@@ -36,7 +36,7 @@
 <!--入口模版-->
 
 <template name="wxParse">
-    <block wx:for="{{wxParseData}}" wx:key="">
+    <block wx:for="{{wxParseData}}" wx:key="index">
         <template is="wxParse0" data="{{item}}"/>
     </block>
 </template>
@@ -99,7 +99,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">       
                     <template is="wxParse1" data="{{item}}"/>                 
                 </block>
             </view>
@@ -182,7 +182,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">       
                 <template is="wxParse2" data="{{item}}"/>                 
             </block>
         </view>
@@ -256,7 +256,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">       
                 <template is="wxParse3" data="{{item}}"/>                 
             </block>
         </view>

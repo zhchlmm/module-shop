@@ -20,7 +20,7 @@
 <view class="cu-card article no-card">
     <view class="cu-item no-padding">
         <view class="cu-list">
-            <view wx:for="{{order.items}}" wx:key="{{gitem.id}}" wx:for-item="gitem">
+            <view wx:for="{{order.items}}" wx:key="id" wx:for-item="gitem">
                 <navigator url="/pages/goods/goods?id={{gitem.productId}}">
                     <view class="cu-item padding-lr-sm">
                         <view class="content" style="padding:12rpx 0;">
@@ -39,13 +39,13 @@
                         </view>
                     </view>
                 </navigator>
-                <view wx:if="{{order.orderStatus==60&&!gitem.isReviewed}}" class="cu-item padding-lr-sm padding-tb-sm text-right solid-bottom">
+                <!-- <view wx:if="{{order.orderStatus==60&&!gitem.isReviewed}}" class="cu-item padding-lr-sm padding-tb-sm text-right solid-bottom">
                     <button bindtap="redirectToReview" data-id="{{gitem.productId}}" class="cu-btn sm round line-olive shadow margin-left-xs">
-                        <!-- <text class="icon-comment text-red"></text> -->
+                        <text class="icon-comment text-red"></text>
                         评价晒单
                     </button>
-                    <!-- <button class="cu-btn sm round line shadow margin-left-xs">追加评价</button> -->
-                </view>
+                    <button class="cu-btn sm round line shadow margin-left-xs">追加评价</button>
+                </view> -->
             </view>
         </view>
     </view>
@@ -92,10 +92,10 @@
         <view class="flex-sub">运费</view>
         <view class="flex-sub text-right">+ ￥{{order.shippingFeeAmount}}</view>
     </view>
-    <view class="flex margin-tb-xs">
+    <!-- <view class="flex margin-tb-xs">
         <view class="flex-sub">折扣</view>
         <view class="flex-sub text-right">- ￥{{order.discountAmount}}</view>
-    </view>
+    </view> -->
     <view class="cu-bar solid-top">
         <view class="action"></view>
         <view class='action' style="margin-right:0;">
@@ -112,15 +112,15 @@
             <!-- <button wx:if="{{order.orderStatus==60&&!order.isReviewed}}" class="cu-btn sm round line shadow margin-left-xs">评价晒单</button> -->
             <view wx:if="{{order.orderStatus==20 || order.orderStatus==25}}">
                 <button bindtap="showCancelModal" class="cu-btn sm round line shadow margin-left-xs">取消订单</button>
-                <button catchtap="payOrder" class="cu-btn sm round bg-green shadow margin-left-xs">去支付</button>
+                <!-- <button catchtap="payOrder" class="cu-btn sm round bg-green shadow margin-left-xs">去支付</button> -->
             </view>
             <view wx:elif="{{order.orderStatus==30||order.orderStatus==40||order.orderStatus==50}}">
                 <button wx:if="{{order.deliveredEndOnForSecond>0}}" bindtap="delayShippedOrder" class="cu-btn sm round line-blue shadow margin-left-xs">延长收货</button>
-                <button bindtap="showShippedModal" class="cu-btn sm round line-green shadow margin-left-xs">确认收货</button>
+                <button bindtap="showShippedModal" class="cu-btn sm round bg-green shadow margin-left-xs">确认收货</button>
             </view>
             <view wx:elif="{{order.orderStatus==60 || order.orderStatus==70}}">
                 <button bindtap="showDeleteModal" class="cu-btn sm round line shadow margin-left-xs">删除订单</button>
-                <button bindtap="againOrder" class="cu-btn sm round line-green shadow margin-left-xs">再次购买</button>
+                <button bindtap="againOrder" class="cu-btn sm round bg-green shadow margin-left-xs">再次购买</button>
             </view>
         </view>
     </view>
@@ -158,7 +158,7 @@
 <view class="cu-modal {{visibleShipped?'show':''}}">
     <view class="cu-dialog">
         <view class="cu-bar bg-white justify-end">
-            <view class="content text-bold">确认收货</view>
+            <view class="content bg-green text-bold">确认收货</view>
             <view class="action" bindtap="hideModal">
                 <text class="icon-close text-green"></text>
             </view>

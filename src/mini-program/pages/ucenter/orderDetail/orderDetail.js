@@ -34,7 +34,7 @@ Page({
         that.setData({
           order: res.data
         });
-        that.payTimer();
+        // that.payTimer();
       }
     });
   },

@@ -1,5 +1,5 @@
 <scroll-view scroll-x class="bg-white nav fixed" scroll-with-animation scroll-left="{{scrollLeft}}" style="top:0px">
-  <view class="cu-item {{current.id == item.id?'text-red cur':''}}" wx:for="{{categories}}" wx:key bindtap="switchCate2" data-id="{{item.id}}">{{item.name}}</view>
+  <view class="cu-item {{current.id == item.id?'text-red cur':''}}" wx:for="{{categories}}" wx:key="id" bindtap="switchCate2" data-id="{{item.id}}">{{item.name}}</view>
 </scroll-view>
 <scroll-view scroll-y="true" style="padding-top:90rpx;">
   <view class="text-center">
@@ -13,7 +13,7 @@
     </view>
   </view>
   <view class="grid col-2 padding-xs">
-    <view class="cu-card case" bindtap="navToGoods" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem">
+    <view class="cu-card case" bindtap="navToGoods" wx:key="id" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem">
       <view class="cu-item" style="margin: 2px;">
         <view class="image">
           <image src="{{iitem.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;max-width:375rpx;padding: 10rpx;"></image>
