@@ -13,7 +13,12 @@
   width: 750rpx;
   height: 750rpx;
 }
-
+.number-item{
+  margin-bottom: 38rpx;
+}
+.number-item .name{
+  height: 32px !important;
+}
 .service-policy {
   /* width: 750rpx; */
   height: 73rpx;
