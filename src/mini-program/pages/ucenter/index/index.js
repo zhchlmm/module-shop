@@ -86,17 +86,24 @@ Page({
         roles: res.data.roles
       };
 
-      // 设置用户信息
-      that.setData({
-        userInfo: userInfo,
-        showLoginDialog: !res.data.phone
-      });
-
       app.globalData.userInfo = userInfo;
       app.globalData.token = res.data.token;
 
       wx.setStorageSync('userInfo', JSON.stringify(userInfo));
       wx.setStorageSync('token', res.data.token);
+
+      // 设置用户信息
+      that.setData({
+        userInfo: userInfo,
+        showLoginDialog: !res.data.phone
+      }, () => {
+        if (res.data.phone) {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        }
+      });
+
     }).catch((err) => {
       wx.hideLoading();
       console.log(err);
@@ -133,14 +140,21 @@ Page({
           let userInfo = app.globalData.userInfo;
           userInfo.phoneNumber = res.data;
 
+          app.globalData.userInfo = userInfo;
+          wx.setStorageSync('userInfo', JSON.stringify(userInfo));
+
           // 设置用户信息
           that.setData({
             userInfo: userInfo,
             showLoginDialog: false
+          }, () => {
+            if (res.data.phone) {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
           });
 
-          app.globalData.userInfo = userInfo;
-          wx.setStorageSync('userInfo', JSON.stringify(userInfo));
         } else {
           wx.showToast({
             title: '微信登录失败',
@@ -166,23 +180,27 @@ Page({
             title: '退出成功！'
           });
 
-          that.setData({
-            userInfo: {
-              name: '',
-              avatar: app.globalData.defaultAvatar
-            }
-          });
-
           app.globalData.userInfo = {
             name: '',
             avatar: app.globalData.defaultAvatar
           };
           app.globalData.token = '';
 
+          // wx.clearStorageSync(); 
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
 
-          // wx.clearStorageSync(); 
+          that.setData({
+            userInfo: {
+              name: '',
+              avatar: app.globalData.defaultAvatar
+            }
+          }, () => {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          });
+
         } else {
 
           wx.showToast({

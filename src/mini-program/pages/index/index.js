@@ -121,7 +121,7 @@ Page({
           });
         });
       } else {
-        // wx.hideLoading();
+        wx.hideLoading();
         wx.showToast({
           title: res.message,
           icon: 'none'

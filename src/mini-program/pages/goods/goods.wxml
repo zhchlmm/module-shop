@@ -11,7 +11,7 @@
     </swiper-item>
   </swiper> -->
   <swiper style="height:750rpx;margin-top:0rpx;" indicator-active-color="rgba(255, 255, 255, .0)" indicator-color="rgba(255, 255, 255, .3)" class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="3000" duration="1000">
-    <swiper-item wx:for="{{product.productImages}}" wx:key>
+    <swiper-item wx:for="{{product.productImages}}" wx:key="index">
       <image src="{{item.mediaUrl}}" mode="aspectFill"></image>
     </swiper-item>
   </swiper>
@@ -116,7 +116,7 @@
     </view>
   </view>
   <view class="cu-list menu">
-    <view class="cu-item" wx:for="{{product.attributes}}" wx:key="{{item.key}}">
+    <view class="cu-item" wx:for="{{product.attributes}}" wx:key="id">
       <view class="content padding-tb-sm">
         <view class="flex">
           <view class="text-sm margin-right-sm">{{item.key}}</view>
@@ -150,7 +150,7 @@
     </view>
   </view>
   <view class="cu-list menu">
-    <view class="cu-item" wx:for="{{product.issues}}" wx:key="{{item.id}}">
+    <view class="cu-item" wx:for="{{product.issues}}" wx:key="id">
       <view class="content padding-tb-sm">
         <view>
           <text class="text-sm">{{item.question}}</text>
@@ -171,7 +171,7 @@
       </view>
     </view>
     <view class="cu-list grid col-2">
-      <view class="cu-item" bindtap="navToGoods" data-id="{{item.id}}" wx:for="{{relateds}}" wx:key="{{item.id}}" style="padding-top:0rpx;">
+      <view class="cu-item" bindtap="navToGoods" data-id="{{item.id}}" wx:for="{{relateds}}" wx:key="id" style="padding-top:0rpx;">
         <view class="image">
           <image class="bg-gray" src="{{item.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;"></image>
         </view>
@@ -211,10 +211,10 @@
       </view>
     </view>
     <view class="spec-con">
-      <view class="spec-item" wx:for="{{product.options}}" wx:key="{{item.id}}">
+      <view class="spec-item" wx:for="{{product.options}}" wx:key="id">
         <view class="name">{{item.name}}</view>
         <view class="values">
-          <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{item.values}}" wx:for-item="vitem" wx:key="{{vitem.id}}" data-value-id="{{vitem.id}}" data-name-id="{{item.id}}">{{vitem.value}}</view>
+          <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{item.values}}" wx:for-item="vitem" wx:key="id" data-value-id="{{vitem.id}}" data-name-id="{{item.id}}">{{vitem.value}}</view>
         </view>
       </view>
       <view class="number-item">
