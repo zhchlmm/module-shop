@@ -16,7 +16,7 @@
         <image class="icon" bindtap="clearHistory" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/del1-93f0a4add4.png"></image>
       </view>
       <view class="b">
-        <view class="item" bindtap="onKeywordTap" data-keyword="{{item.name}}" wx:for="{{historyKeyword}}" hover-class="navigator-hover">{{item.name}}</view>
+        <view class="item" bindtap="onKeywordTap" data-keyword="{{item.name}}" wx:for="{{historyKeyword}}" hover-class="navigator-hover" wx:key="index">{{item.name}}</view>
       </view>
     </view>
     <view class="serach-keywords search-hot" wx:if="{{!keyword}}">
@@ -24,11 +24,11 @@
         <text class="title">热门搜索</text>
       </view>
       <view class="b">
-        <view class="item {{item.is_hot === 1 ? 'active' : ''}}" hover-class="navigator-hover" bindtap="onKeywordTap" data-keyword="{{item.name}}" wx:for="{{hotKeyword}}">{{item.name}}</view>
+        <view class="item {{item.is_hot === 1 ? 'active' : ''}}" hover-class="navigator-hover" bindtap="onKeywordTap" data-keyword="{{item.name}}" wx:for="{{hotKeyword}}" wx:key="index">{{item.name}}</view>
       </view>
     </view>
     <view class="shelper-list" wx:if="{{keyword}}">
-      <view class="item" hover-class="navigator-hover" wx:for="{{helpKeyword}}" bindtap="onKeywordTap" data-keyword="{{item}}">{{item}}</view>
+      <view class="item" hover-class="navigator-hover" wx:for="{{helpKeyword}}" wx:key="index" bindtap="onKeywordTap" data-keyword="{{item}}">{{item}}</view>
     </view>
   </view>
   <view wx:if="{{searchStatus}}">
@@ -51,7 +51,7 @@
       </view>
     </scroll-view>
     <view class="grid col-2 padding-xs">
-      <view class="cu-card case" bindtap="navToGoods" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem">
+      <view class="cu-card case" bindtap="navToGoods" data-id="{{iitem.id}}" wx:for="{{pageData}}" wx:for-item="iitem" wx:key="id">
         <view class="cu-item shadow" style="margin:6rpx;">
           <view class="image">
             <image class="bg-white" src="{{iitem.thumbnailUrl}}" mode="aspectFill" style="max-height:375rpx;"></image>
@@ -87,7 +87,7 @@
         </view>
       </view>
       <view class="padding-sm">
-        <button wx:for="{{categories}}" wx:key data-id="{{item.id}}" data-category-index="{{index}}" bindtap="selectCategory2" class="margin-xs cu-btn sm {{categoryId==item.id?'text-red line':'line text'}}">{{item.name}}</button>
+        <button wx:for="{{categories}}" wx:key data-id="{{item.id}}" wx:key="id" data-category-index="{{index}}" bindtap="selectCategory2" class="margin-xs cu-btn sm {{categoryId==item.id?'text-red line':'line text'}}">{{item.name}}</button>
       </view>
     </view>
   </view>

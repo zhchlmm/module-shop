@@ -94,8 +94,8 @@ namespace Shop.WebApi.Controllers
                 return await Task.Run(() =>
                 {
                     var kr = new KeywordResult();
-                    kr.HotKeywords.Add(new Keyword { Name = "1" });
-                    kr.HotKeywords.Add(new Keyword { Name = "2" });
+                    //kr.HotKeywords.Add(new Keyword { Name = "1" });
+                    //kr.HotKeywords.Add(new Keyword { Name = "2" });
                     return kr;
                 });
             });
@@ -111,7 +111,7 @@ namespace Shop.WebApi.Controllers
 
     public class KeywordResult
     {
-        public Keyword DefaultKeyword { get; set; } = new Keyword() { Name = "测试" };
+        public Keyword DefaultKeyword { get; set; } = new Keyword() { Name = "" };
         public IList<Keyword> HistoryKeywords { get; set; } = new List<Keyword>();
         public IList<Keyword> HotKeywords { get; set; } = new List<Keyword>();
     }

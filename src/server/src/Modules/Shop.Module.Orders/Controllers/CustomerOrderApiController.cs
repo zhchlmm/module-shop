@@ -329,13 +329,13 @@ namespace Shop.Module.Orders.Controllers
             await _orderRepository.SaveChangesAsync();
 
             // 自动好评
-            var min = await _appSettingService.Get<int>(OrderKeys.OrderCompleteAutoReviewTimeForMinute);
-            foreach (var item in order.OrderItems)
-            {
-                await _jobService.Schedule(() =>
-                _reviewService.ReviewAutoGood(item.ProductId, EntityTypeWithId.Product, order.Id, ReviewSourceType.Order)
-                , TimeSpan.FromMinutes(min));
-            }
+            //var min = await _appSettingService.Get<int>(OrderKeys.OrderCompleteAutoReviewTimeForMinute);
+            //foreach (var item in order.OrderItems)
+            //{
+            //    await _jobService.Schedule(() =>
+            //    _reviewService.ReviewAutoGood(item.ProductId, EntityTypeWithId.Product, order.Id, ReviewSourceType.Order)
+            //    , TimeSpan.FromMinutes(min));
+            //}
 
             return Result.Ok();
         }

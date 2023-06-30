@@ -275,8 +275,8 @@ namespace Shop.Module.Orders.Services
                 }
 
                 // 订单取消任务 如果n分钟内用户支付或主动取消订单时,则自动取消此任务
-                var min = await _appSettingService.Get<int>(OrderKeys.OrderAutoCanceledTimeForMinute);
-                await _jobService.Schedule(() => Cancel(order.Id, (int)UserWithId.System, "超时自动取消"), TimeSpan.FromMinutes(min));
+                //var min = await _appSettingService.Get<int>(OrderKeys.OrderAutoCanceledTimeForMinute);
+                //await _jobService.Schedule(() => Cancel(order.Id, (int)UserWithId.System, "超时自动取消"), TimeSpan.FromMinutes(min));
 
                 transaction.Commit();
             }
