@@ -203,8 +203,8 @@
           <view class="p">价格：￥{{product.price}}{{product.unitName?"/"+product.unitName:""}}</view>
           <view wx:if="{{isAllSpec}}">
             <view class="a" style="color:red;" wx:if="{{!currentStock.isAllowToOrder}}">无货</view>
-            <view class="a" style="" wx:elif="{{currentStock.isAllowToOrder && currentStock.displayStockAvailability && currentStock.displayStockQuantity}}">库存：{{currentStock.stockQuantity}}</view>
-            <view class="a" style="" wx:elif="{{currentStock.isAllowToOrder && currentStock.displayStockAvailability}}">有货</view>
+            <view class="a" wx:elif="{{currentStock.isAllowToOrder && currentStock.displayStockAvailability && currentStock.displayStockQuantity}}">库存：{{currentStock.stockQuantity}}</view>
+            <view class="a" wx:elif="{{currentStock.isAllowToOrder && currentStock.displayStockAvailability}}">有货</view>
           </view>
           <view class="a" wx:if="{{product.options.length>0}}">{{checkedSpecText}}</view>
         </view>
