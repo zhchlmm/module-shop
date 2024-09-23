@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.Services;
 using Shop.WebApi.Extensions;
+using System.Reflection;
 
 namespace Shop.WebApi
 {
@@ -26,10 +27,13 @@ namespace Shop.WebApi
         {
             services.AddCustomizedConfigureServices(Configuration, Environment);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shop Api", Version = "1.0.0" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shop Api", Version = "1.0.0" });
+
+            //});
+
+            services.AddSwaggerDoc("Module Shop Api");
 
             //services.AddControllers();
         }
@@ -40,6 +44,22 @@ namespace Shop.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.Use(async (context, next) =>
+                {
+                    // 处理 Swagger 刷新记住授权状态
+                    var isAuthorization = context.Request.Headers.ContainsKey("Authorization");
+                    if (!isAuthorization)
+                    {
+                        var isToken = context.Request.Cookies.ContainsKey("access-token");
+                        if (isToken)
+                        {
+                            var token = context.Request.Cookies["access-token"];
+                            context.Request.Headers.TryAdd("Authorization", $"Bearer {token}");
+                        }
+                    }
+                    await next();
+                });
             }
             else
             {
@@ -66,6 +86,11 @@ namespace Shop.WebApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.Map("/", () =>
+                {
+                    return "ok";
+                });
+
                 endpoints.MapControllers();
             });
         }

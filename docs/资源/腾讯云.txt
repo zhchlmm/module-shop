@@ -1,0 +1,45 @@
+Tencent Cloud Account
+--------------------------------------------------
+子帐号登录
+https://cloud.tencent.com/login/subAccount
+主账号：100031261377
+子帐号：zhchlmm
+子帐号密码：Cairuimall@2023
+
+
++++++++++++ ECS Account +++++++++++++++++++++++++
+--------------------------------------------------
+root
+Cairui$Mall@2023!zZ
+
+
+
++++++++++++ BT-Pannel Begin ++++++++++++++++++++
+
+Account for CaiRuiMall
+--------------------------------------------------
+BTCaiRuiMall2023
+BT$Crm@2023zZdN!
+
+
+BT-Pannel Account
+--------------------------------------------------
+13661668669
+BTP@2023zt$136
+
++++++++++++ BT-Pannel End ++++++++++++
+
+
+
++++++++++++++ mysql 8.0 Begin ++++++++++++++++++++
+
+root/Zz$cairuiMall@2023#
+
+cairuimall/Cairui$Mall@2023!zZ
+
++++++++++++++ mysql 8.0 End ++++++++++++++++++++
+
+
+ApiProfilerAuth
+admin/crm$2023&dwnt
+

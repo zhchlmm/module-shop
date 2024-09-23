@@ -44,14 +44,14 @@ namespace Shop.Module.StorageGitHub
             var options = _options.CurrentValue;
 
             if (options == null || string.IsNullOrWhiteSpace(fileName))
-                return await Task.FromResult(string.Empty);
+                return string.Empty;
             var res = options.RepositoryName.Trim().Trim('/');
             var bra = options.BranchName.Trim().Trim('/');
             var path = options.SavePath.Trim().Trim('/');
             var pathInName = $"{fileName.Substring(0, 2)}/{fileName.Substring(2, 2)}/{fileName.Substring(4, 2)}";
 
             //https://raw.githubusercontent.com/trueai-org/data/master/images/44/b7/96/44b796c968f4703a871b0f6f06fe85b1636844361657344457.jpg
-            return await Task.FromResult($"{ContentHost.TrimEnd('/')}/{res}/{bra}/{path}/{pathInName}/{fileName}");
+            return $"{ContentHost.TrimEnd('/')}/{res}/{bra}/{path}/{pathInName}/{fileName}";
         }
 
         public async Task<Media> SaveMediaAsync(Stream mediaBinaryStream, string fileName, string mimeType = null)
@@ -127,10 +127,10 @@ namespace Shop.Module.StorageGitHub
         {
             var options = _options.CurrentValue;
             if (options == null)
-                return await Task.FromResult(string.Empty);
+                return string.Empty;
             var res = options.RepositoryName.Trim().Trim('/');
             var bra = options.BranchName.Trim().Trim('/');
-            return await Task.FromResult($"{ContentHost.TrimEnd('/')}/{res}/{bra}");
+            return $"{ContentHost.TrimEnd('/')}/{res}/{bra}";
         }
 
         private async Task<GitHubDataResult> Upload(byte[] bytes, string hsMd5, string uploadFileName)
@@ -181,8 +181,10 @@ namespace Shop.Module.StorageGitHub
             };
 
             var client = new RestClient(uri);
-            var request = new RestRequest();
-            request.Method = Method.Put;
+            var request = new RestRequest()
+            {
+                 Method = Method.Put
+            };
             request.AddHeader("Authorization", "token " + token);
             request.AddJsonBody(body);
             var response = client.Execute(request);
@@ -192,7 +194,7 @@ namespace Shop.Module.StorageGitHub
                 var data = JsonConvert.DeserializeObject<GitHubDataResult>(response.Content);
                 if (data != null && data.Content != null && !string.IsNullOrWhiteSpace(data.Content.DownloadUrl))
                 {
-                    return await Task.FromResult(data);
+                    return data;
                 }
                 else
                 {

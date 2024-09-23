@@ -1,6 +1,7 @@
 ﻿using Hangfire;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.MemoryStorage;
+using Hangfire.Redis;
 using Hangfire.Redis.StackExchange;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,8 +55,6 @@ namespace Shop.Module.Hangfire
                 });
             }
 
-            services.AddHangfireServer();
-
             services.AddScoped<IJobService, JobService>();
 
             services.AddHostedService<HealthJob>();
@@ -84,7 +83,7 @@ namespace Shop.Module.Hangfire
             {
                 app.UseHangfireDashboard();
             }
-            //app.UseHangfireServer();
+            app.UseHangfireServer();
         }
     }
 }

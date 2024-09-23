@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -9,17 +9,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="IdGen" Version="3.0.3" />
-		<PackageReference Include="MediatR" Version="12.0.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />
+		<PackageReference Include="IdGen" Version="3.0.5" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="Aspose.Cells" >
-	    <HintPath>..\..\libs\Aspose.Cells\Aspose.Cells.dll</HintPath>
-	    <Private>True</Private>
-	  </Reference>
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
 	</ItemGroup>
 
 </Project>

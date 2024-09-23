@@ -21,6 +21,10 @@ namespace Shop.Module.SampleData.Data
         public void RunCommand(string command)
         {
             _logger.LogDebug(command);
+
+            //_dbContext.Database.ExecuteSqlCommand(command);
+
+            // 使用 ExecuteSqlRaw 替换 ExecuteSqlCommand
             _dbContext.Database.ExecuteSqlRaw(command);
         }
 
@@ -30,6 +34,9 @@ namespace Shop.Module.SampleData.Data
             {
                 foreach (var command in commands)
                 {
+                    //_dbContext.Database.ExecuteSqlCommand(command);
+
+                    // 使用 ExecuteSqlRaw 替换 ExecuteSqlCommand
                     _dbContext.Database.ExecuteSqlRaw(command);
                 }
                 tran.Commit();

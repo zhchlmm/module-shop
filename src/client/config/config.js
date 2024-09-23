@@ -35,6 +35,7 @@ const plugins = [
     },
   ],
 ];
+
 // judge add ga
 if (process.env.APP_TYPE === 'site') {
   plugins.push([
@@ -44,8 +45,6 @@ if (process.env.APP_TYPE === 'site') {
     },
   ]);
 }
-
-process.traceDeprecation = true;
 
 export default {
   // history:'hash', //history: 'hash', // 默认是 browser , 官网推荐 browser https://pro.ant.design/docs/deploy-cn
@@ -70,8 +69,9 @@ export default {
   },
   proxy: {
     '/api': {
-      // target: 'http://localhost:44372/',
-      target: 'https://api.cairuimall.com/',
+      // target: 'http://localhost:5000/',
+      // target: 'http://circle.ac.cn:5020/',
+      target: 'https://demo.shopapi.circle.ac.cn/',
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
     },
