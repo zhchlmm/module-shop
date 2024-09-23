@@ -96,12 +96,6 @@ Page({
       that.setData({
         userInfo: userInfo,
         showLoginDialog: !res.data.phone
-      }, () => {
-        if (res.data.phone) {
-          wx.reLaunch({
-            url: '/pages/index/index',
-          })
-        }
       });
 
     }).catch((err) => {
@@ -147,12 +141,6 @@ Page({
           that.setData({
             userInfo: userInfo,
             showLoginDialog: false
-          }, () => {
-            if (res.data.phone) {
-              wx.reLaunch({
-                url: '/pages/index/index',
-              })
-            }
           });
 
         } else {
@@ -195,10 +183,6 @@ Page({
               name: '',
               avatar: app.globalData.defaultAvatar
             }
-          }, () => {
-            wx.reLaunch({
-              url: '/pages/index/index',
-            })
           });
 
         } else {

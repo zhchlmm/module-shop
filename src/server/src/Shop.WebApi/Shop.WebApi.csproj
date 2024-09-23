@@ -76,4 +76,10 @@
 	  <Folder Include="logs\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="Aspose.Cells">
+	    <HintPath>..\..\libs\Aspose.Cells\Aspose.Cells.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 </Project>

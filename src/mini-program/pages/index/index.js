@@ -129,6 +129,10 @@ Page({
       }
     });
   },
+  addToCart:function(e){
+var goodsId=e.currentTarget.dataset.id;
+
+  },
   onLoad: function (options) {
     this.getIndexData();
   },

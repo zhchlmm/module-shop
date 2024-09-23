@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Shop.Infrastructure.Services;
 using Shop.WebApi.Extensions;
 
 namespace Shop.WebApi
@@ -60,6 +61,8 @@ namespace Shop.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseAsposeCells();
 
             app.UseEndpoints(endpoints =>
             {

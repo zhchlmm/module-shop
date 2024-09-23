@@ -302,6 +302,7 @@ class UserList extends PureComponent {
         },
       });
     }).then(res => {
+      console.log(res);
       if (res.success === true) {
         this.setState({
           loading: false,

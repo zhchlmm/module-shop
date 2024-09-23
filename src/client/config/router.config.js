@@ -312,6 +312,22 @@ export default [
               // },
             ],
           },
+          {
+            path: '/sale/print',
+            name: 'print',
+            hideChildrenInMenu: true,
+            routes: [
+              {
+                path: '/sale/print',
+                redirect: '/sale/print/list',
+              },
+              {
+                path: '/sale/print/list',
+                name: 'list',
+                component: './Sale/Print/List'
+              },
+            ],
+          },
         ],
       },
 

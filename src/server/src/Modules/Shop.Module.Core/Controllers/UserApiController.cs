@@ -62,7 +62,7 @@ namespace Shop.Module.Core.Controllers
         }
 
         [HttpPost("grid")]
-        public async Task<Result<StandardTableResult<UserQueryResult>>> List([FromBody]StandardTableParam<UserQueryParam> param)
+        public async Task<Result<StandardTableResult<UserQueryResult>>> List([FromBody] StandardTableParam<UserQueryParam> param)
         {
             var query = _userRepository.Query();
             var search = param.Search;
@@ -144,7 +144,7 @@ namespace Shop.Module.Core.Controllers
         }
 
         [HttpPost]
-        public async Task<Result> Post([FromBody]UserCreateParam model)
+        public async Task<Result> Post([FromBody] UserCreateParam model)
         {
             if (string.IsNullOrWhiteSpace(model.Password))
                 throw new Exception("密码不能为空");
@@ -193,7 +193,7 @@ namespace Shop.Module.Core.Controllers
         }
 
         [HttpPut("{id:int:min(1)}")]
-        public async Task<Result> Put(int id, [FromBody]UserCreateParam model)
+        public async Task<Result> Put(int id, [FromBody] UserCreateParam model)
         {
             var user = await _userRepository.Query()
                    .Include(x => x.Roles)
@@ -210,29 +210,36 @@ namespace Shop.Module.Core.Controllers
             user.UpdatedOn = DateTime.Now;
             user.AdminRemark = model.AdminRemark;
 
-            AddOrDeleteRoles(model, user);
-
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            try
             {
-                return Result.Fail(result.Errors.FirstOrDefault()?.Description);
-            }
-            if (!string.IsNullOrWhiteSpace(model.Password))
-            {
-                model.Password = model.Password.Trim();
-                if (model.Password.Length < 6 || model.Password.Length > 32)
-                    throw new Exception("密码长度6-32字符");
+                AddOrDeleteRoles(model, user);
 
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                result = await _userManager.ResetPasswordAsync(user, code, model.Password.Trim());
-            }
-            if (!result.Succeeded)
-            {
-                return Result.Fail(result.Errors.FirstOrDefault()?.Description);
-            }
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return Result.Fail(result.Errors.FirstOrDefault()?.Description);
+                }
+                if (!string.IsNullOrWhiteSpace(model.Password))
+                {
+                    model.Password = model.Password.Trim();
+                    if (model.Password.Length < 6 || model.Password.Length > 32)
+                        throw new Exception("密码长度6-32字符");
 
-            _tokenService.RemoveUserToken(user.Id);
-            return Result.Ok();
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    result = await _userManager.ResetPasswordAsync(user, code, model.Password.Trim());
+                }
+                if (!result.Succeeded)
+                {
+                    return Result.Fail(result.Errors.FirstOrDefault()?.Description);
+                }
+
+                _tokenService.RemoveUserToken(user.Id);
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail((ex.InnerException ?? ex).Message);
+            }
         }
 
         [HttpDelete("{id:int:min(1)}")]
@@ -289,7 +296,7 @@ namespace Shop.Module.Core.Controllers
         }
 
         [HttpGet("{userId}/addresses")]
-        public async Task<Result> UserAddress(int userId, [FromServices]IRepository<UserAddress> userAddressRepository)
+        public async Task<Result> UserAddress(int userId, [FromServices] IRepository<UserAddress> userAddressRepository)
         {
             var user = await _userRepository.Query().FirstOrDefaultAsync(x => x.Id == userId);
             if (user == null)

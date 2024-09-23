@@ -23,9 +23,10 @@
             <view class="content padding-lr-sm">
               <view class="text-cut text text text-left">{{iitem.name}}</view>
               <view class="text-cut text-gray text-sm text-left">{{iitem.shortDescription}}</view>
-              <view class="flex">
+              <view class="flex justify-between">
                 <view class="text-red text-bold">￥{{iitem.price}}{{iitem.unitName?"/"+iitem.unitName:""}}</view>
                 <view wx:if="{{iitem.oldPrice&&iitem.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{iitem.oldPrice}}{{iitem.unitName?"/"+iitem.unitName:""}}</view>
+                <view class="text-red text-bold text-xxl icon-cart"></view>
               </view>
             </view>
           </view>

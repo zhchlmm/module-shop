@@ -43,9 +43,10 @@
                       <view class="content padding-lr-sm">
                         <view class="text-cut text text text-left">{{item2.name}}</view>
                         <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
-                        <view class="flex">
+                        <view class="flex justify-between">
                           <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
                           <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+                          <view bindtap="addToCart" data-id="{{item2.id}}" class="text-red text-bold text-xxl icon-cart"></view>
                         </view>
                       </view>
                     </view>
@@ -100,9 +101,10 @@
                       <view class="content padding-lr-sm">
                         <view class="text-cut text text text-left">{{item2.name}}</view>
                         <view class="text-cut text-gray text-sm text-left">{{item2.shortDescription}}</view>
-                        <view class="flex">
+                        <view class="flex justify-between">
                           <view class="text-red text-bold">￥{{item2.price}}{{item2.unitName?"/"+item2.unitName:""}}</view>
                           <view wx:if="{{item2.oldPrice&&item2.oldPrice>0}}" class="padding-left-xs text-gray" style="text-decoration:line-through;">￥{{item2.oldPrice}}</view>
+                          <view class="text-red text-bold text-xxl icon-cart"></view>
                         </view>
                       </view>
                     </view>

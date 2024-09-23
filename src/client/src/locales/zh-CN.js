@@ -321,6 +321,8 @@ export default {
   'menu.sale.order.edit': '编辑',
   'menu.sale.order.detail': '详情',
   'menu.sale.order.shipment': '发货',
+  'menu.sale.print': '打印',
+  'menu.sale.print.list': '列表',
 
   'menu.promotion': '活动管理',
   'menu.promotion.discount': '折扣',

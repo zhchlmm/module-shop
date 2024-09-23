@@ -362,7 +362,7 @@ namespace Shop.Module.Orders.Controllers
             var orderSs = new OrderStatus[] { OrderStatus.PaymentReceived, OrderStatus.Shipping, OrderStatus.Shipped };
             if (!orderSs.Contains(order.OrderStatus))
             {
-                return Result.Fail("当前订单无法延长确认收货时间"); ;
+                return Result.Fail("当前订单无法延长确认收货时间");
             }
 
             var timeFromMin = await _appSettingService.Get<int>(OrderKeys.OrderAutoCompleteTimeForMinute);

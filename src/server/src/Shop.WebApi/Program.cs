@@ -43,7 +43,11 @@ namespace Shop.WebApi
 
                 config.AddEntityFrameworkConfig(opt => opt.UseCustomizedDataStore(configuration));
 
-                Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+                Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
+                .MinimumLevel.Information().Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
             }).ConfigureLogging((loggingBuilder) =>
             {
                 loggingBuilder.AddSerilog();
@@ -52,7 +56,9 @@ namespace Shop.WebApi
                 var env = builderContext.HostingEnvironment;
                 if (env.IsDevelopment())
                 {
-                    config.MinimumLevel.Information().Enrich.FromLogContext().WriteTo.Console();
+                    config.MinimumLevel.Information().Enrich.FromLogContext()
+                    .WriteTo.Console()
+                    .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day);
                     SelfLog.Enable(Console.Error);
                 }
             });

@@ -512,6 +512,10 @@ class OrderList extends PureComponent {
     router.push('./add');
   };
 
+  handlePrint = () => {
+    router.push('../print/list');
+  };
+
   handleEdit = id => {
     router.push({
       pathname: './edit',
@@ -668,15 +672,16 @@ class OrderList extends PureComponent {
         <Button onClick={this.handleAdd} type="primary" icon="plus">
           新增
         </Button>
+        <Button onClick={this.handlePrint} type="primary" icon="printer">
+          打印采购单
+        </Button>
       </Fragment>
     );
     return (
       <PageHeaderWrapper
         title="订单"
         action={
-          <Button onClick={this.handleAdd} type="primary" icon="plus">
-            添加
-          </Button>
+          action
         }
       >
         <div>
